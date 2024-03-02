@@ -1,13 +1,18 @@
-package FactoryMethod;
+import java.io.Serializable;
+import java.util.ArrayList;
 
-public class User {
+public class User implements Serializable{
     private String name;
     private String userName;
     private int userID;
     private int coins;
+    // last Login ??
 
-    public User() {
+    private ArrayList<Army> army;
+
+    public User(int id) {
         this.coins = 500;
+        this.userID = id;
     }
 
     public String getName() {

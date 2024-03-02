@@ -1,19 +1,22 @@
-package FactoryMethod;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class UserProfiles {
-    private static ArrayList<String> userNames = new ArrayList<>(); // need to be loaded from local
+public class UserProfiles implements Serializable{
 
-    public static ArrayList<String> getUserNames() {
-        return userNames;
+    private ArrayList<String> userNamesArray = new ArrayList<>(); // need to be loaded from local
+
+    public ArrayList<String> getUserNames() {
+        return userNamesArray;
     }
 
-    public static void addUserName(String userName) {
-        userNames.add(userName);
+    public void addUserName(String userName) {
+        userNamesArray.add(userName);
     }
-    public static boolean isAlreadyTaken(String userName) {
-        return userNames.contains(userName);
+    public boolean isAlreadyTaken(String userName) {
+        return userNamesArray.contains(userName);
+    }
+    public int getNumberOfUsers(){
+        return userNamesArray.size();
     }
     
     

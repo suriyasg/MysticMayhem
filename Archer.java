@@ -1,4 +1,3 @@
-package FactoryMethod;
 enum TRIBE{
     Highlanders, 
     Marshlanders, 
