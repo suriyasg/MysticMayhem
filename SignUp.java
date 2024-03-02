@@ -41,8 +41,7 @@ public class SignUp {
 
         System.out.print("Enter your name :");
         String name = scanner.nextLine();
-        User newUser = new User(savedProfiles.getNumberOfUsers()+1);
-        newUser.setName(name);
+
 
         System.out.print("Enter your user name (you can not reset it later) :");
         String userName = scanner.nextLine();
@@ -51,7 +50,9 @@ public class SignUp {
             System.out.print("Enter your user name (you can not reset it later) :");
             userName = scanner.nextLine();
         }
-        newUser.setUserName(userName);
+        User newUser = new User(userName,savedProfiles.getNumberOfUsers()+1);
+        newUser.setName(name);
+        // newUser.setUserName(userName); user name read-only once defined
         savedProfiles.addUserName(userName);
         
         FileOutputStream newUserFile = new FileOutputStream(userName+".ser");

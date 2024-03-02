@@ -45,7 +45,7 @@ public class LogIn {
             Loggeduser = userName;
             System.out.println("Welcome back " + userName);
         }else{
-            System.out.println("Opps 😅," + userName +" User name not found, try entering correct one if you have one already");
+            System.out.println("Oops 😅," + userName +" User name not found, try entering correct one if you have one already");
             System.out.println("if you want to create account press y");
             System.out.println("if you want to try log in again press r");
             System.out.println("if you want to exit the game press any other letters");

@@ -5,12 +5,14 @@ public class User implements Serializable{
     private String name;
     private String userName;
     private int userID;
+    private String homeLand;
     private int coins;
     // last Login ??
 
     public ArrayList<Army> army;
 
-    public User(int id) {
+    public User(String userName, int id) {
+        this.userName = userName;
         this.coins = 500;
         this.userID = id;
     }
@@ -27,9 +29,9 @@ public class User implements Serializable{
         return userName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+    // public void setUserName(String userName) {
+    //     this.userName = userName;
+    // }
 
     public int getUserID() {
         return userID;
@@ -37,6 +39,14 @@ public class User implements Serializable{
 
     public void setUserID(int userID) {
         this.userID = userID;
+    }
+
+    public String getHomeLand() {
+        return homeLand;
+    }
+
+    public void setHomeLand(String homeLand) {
+        this.homeLand = homeLand;
     }
 
     public int getCoins() {

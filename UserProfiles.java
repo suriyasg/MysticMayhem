@@ -15,7 +15,7 @@ public class UserProfiles implements Serializable{
     public boolean isAlreadyTaken(String userName) {
         return userNamesArray.contains(userName);
     }
-    public int getNumberOfUsers(){
+    public int getNumberOfUsers(){ // instead of checking the arraylist we can store it as separeate variable
         return userNamesArray.size();
     }
     

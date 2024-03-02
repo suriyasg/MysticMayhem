@@ -4,9 +4,11 @@ public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException{
         System.out.println("Weclome to Mystic MAhem!");
         System.out.println("1. Log1n    2. SignUp  3. exit game (Choose an appropriate number)");
+        // read "About game, devs (us) 😅"
 
         Scanner scanner = new Scanner(System.in);
-        int choice = scanner.nextInt();
+        String nexString = scanner.nextLine(); // what if user enter non numerical input
+        int choice = Integer.parseInt(nexString);
 
         String userName;
         if (choice == 1) {
@@ -17,13 +19,15 @@ public class Main {
             scanner.close();
             return;
         }
-        scanner.close();
+
         if(userName == null){
+            scanner.close();
             return;
         }else{
             MainMenu.render(userName);
         }
 
-
+        scanner.close();
+        return;
     }
 }
