@@ -34,7 +34,7 @@ public class Character {
         return this.attack;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
@@ -64,6 +64,27 @@ public class Character {
 
     public void setSpeed(double speed) {
         this.speed = speed;
+    }
+
+    public void assignEquipment(Equipment eq) {
+        this.setPrice(this.getPrice() + (int) (0.2 * eq.getPrice()));
+        this.setAttack(this.getAttack() + eq.getAttack());
+        this.setDefence(this.getDefence() + eq.getDefence());
+        this.setHealth(this.getHealth() + eq.getHealth());
+        this.setSpeed(this.getSpeed() + eq.getSpeed());
+    }
+
+    public void removeEquipment(Equipment eq) {
+        this.setPrice(this.getPrice() - (int) (0.2 * eq.getPrice()));
+        this.setAttack(this.getAttack() - eq.getAttack());
+        this.setDefence(this.getDefence() - eq.getDefence());
+        this.setHealth(this.getHealth() - eq.getHealth());
+        this.setSpeed(this.getSpeed() - eq.getSpeed());
+    }
+
+    public void changeEquipment(Equipment oldEq, Equipment newEq) {
+        this.removeEquipment(oldEq);
+        this.assignEquipment(newEq);
     }
 
     // creating the required characters as static objects
