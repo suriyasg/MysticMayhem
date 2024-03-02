@@ -39,27 +39,29 @@ public class LogIn {
 
         System.out.println("Welcome To Log In Page!");
         System.out.print("Enter your user name :");
-        String name = scanner.nextLine();
+        String userName = scanner.nextLine();
 
-        if(savedProfiles.isAlreadyTaken(name)){
-            System.out.println("Welcome back " + name);
+        if(savedProfiles.isAlreadyTaken(userName)){
+            Loggeduser = userName;
+            System.out.println("Welcome back " + userName);
         }else{
-            System.out.println("Opps 😅," + name +" User name not found, try entering correct one if you have one already");
+            System.out.println("Opps 😅," + userName +" User name not found, try entering correct one if you have one already");
             System.out.println("if you want to create account press y");
             System.out.println("if you want to try log in again press r");
             System.out.println("if you want to exit the game press any other letters");
             String answer = scanner.nextLine();
 
             if(answer.toUpperCase().equals("Y")){
-                Loggeduser = SignUp.render();
+                return SignUp.render();
             }else if(answer.toUpperCase().equals("R")){
-                Loggeduser = LogIn.render();
+                return LogIn.render();
             }else{
                 System.out.println("Really? 🫢, Bye! 👋");
                 return null;  //ends the program will it?
             }
         }
         scanner.close();
+
         return Loggeduser;
     }
 }
