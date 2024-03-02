@@ -10,7 +10,7 @@ public class SignUp {
 
     private static UserProfiles savedProfiles = null;
 
-    public static void render() throws IOException, ClassNotFoundException{
+    public static String render() throws IOException, ClassNotFoundException{
         Path currentRelativePath = Paths.get("");
         String workingDir = currentRelativePath.toAbsolutePath().toString();
 
@@ -27,15 +27,12 @@ public class SignUp {
             userProfileOut.close();
             userProfileFile.close();
         }
-        
+
         FileInputStream FileIn = new FileInputStream(workingDir+"/UserProfile.ser"); // need to get path dynamically
         ObjectInputStream in = new ObjectInputStream(FileIn);
         savedProfiles = (UserProfiles) in.readObject();
         in.close();
         FileIn.close();
-
-        FileOutputStream userFile = new FileOutputStream("User.ser");
-        ObjectOutputStream userOut = new ObjectOutputStream(userFile);
     
         FileOutputStream userProfileFile = new FileOutputStream("UserProfile.ser");
         ObjectOutputStream userProfileOut = new ObjectOutputStream(userProfileFile);
@@ -56,19 +53,23 @@ public class SignUp {
         }
         newUser.setUserName(userName);
         savedProfiles.addUserName(userName);
+        
+        FileOutputStream newUserFile = new FileOutputStream(userName+".ser");
+        ObjectOutputStream newUserOut = new ObjectOutputStream(newUserFile);
 
         System.out.println("Congrats, You are the " + savedProfiles.getNumberOfUsers() + " User!");
 
-        userOut.writeObject(newUser);
+        newUserOut.writeObject(newUser);
         userProfileOut.writeObject(savedProfiles);
 
-        userOut.close();
-        userFile.close();
+        newUserOut.close();
+        newUserFile.close();
 
         userProfileOut.close();
         userProfileFile.close();
         scanner.close();
         System.out.println("User saved!");
+        return userName;
 
     }
 }

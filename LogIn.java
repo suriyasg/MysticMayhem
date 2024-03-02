@@ -12,8 +12,8 @@ import java.util.Scanner;
 public class LogIn {
     public static Scanner scanner = new Scanner(System.in);
     private static UserProfiles savedProfiles = null;
-
-    public static void render() throws IOException, ClassNotFoundException{
+    private static String Loggeduser;
+    public static String render() throws IOException, ClassNotFoundException{
         Path currentRelativePath = Paths.get("");
         String workingDir = currentRelativePath.toAbsolutePath().toString();
 
@@ -51,14 +51,15 @@ public class LogIn {
             String answer = scanner.nextLine();
 
             if(answer.toUpperCase().equals("Y")){
-                SignUp.render();
+                Loggeduser = SignUp.render();
             }else if(answer.toUpperCase().equals("R")){
-                LogIn.render();
+                Loggeduser = LogIn.render();
             }else{
                 System.out.println("Really? 🫢, Bye! 👋");
-                return;  //ends the program will it?
+                return null;  //ends the program will it?
             }
         }
         scanner.close();
+        return Loggeduser;
     }
 }

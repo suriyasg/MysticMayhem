@@ -8,7 +8,7 @@ public class User implements Serializable{
     private int coins;
     // last Login ??
 
-    private ArrayList<Army> army;
+    public ArrayList<Army> army;
 
     public User(int id) {
         this.coins = 500;
