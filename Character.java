@@ -3,9 +3,9 @@
 //import java.util.HashMap;
 
 public class Character {
-    public String name;
-    public int price;
-    protected float attack, defence, health, speed;
+    private String name;
+    private int price;
+    private double attack, defence, health, speed;
 
     public Character(String name, int price, float attack, float defence, float health, float speed) {
         // a common constructor
@@ -23,7 +23,47 @@ public class Character {
     }
 
     public void attackOpponent(Character op) { // attacking procedure is same for most of the characters
-        op.health -= (0.5 * this.attack - 0.1 * op.defence);
+        op.setHealth(op.getHealth() - (0.5 * this.getAttack() - op.getDefence()));
+    }
+
+    public void setAttack(double attack) {
+        this.attack = attack;
+    }
+
+    public double getAttack() {
+        return this.attack;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public double getDefence() {
+        return defence;
+    }
+
+    public void setDefence(double defence) {
+        this.defence = defence;
+    }
+
+    public double getHealth() {
+        return health;
+    }
+
+    public void setHealth(double health) {
+        this.health = health;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
     }
 
     // creating the required characters as static objects
@@ -56,6 +96,7 @@ public class Character {
     public static Healer alchemist = new Healer("Alchemist", 150, 13, 13, 13, 13);
     public static Healer saint = new Healer("Saint", 200, 16, 14, 17, 9);
     public static Healer lightbringer = new Healer("Lightbringer", 260, 17, 15, 19, 12);
+
     // differentiating characters accordingto the homegrounds
     public static Character[] highLanders = { Character.shooter, Character.ranger, Character.cavalier,
             Character.enchanter, Character.zoro, Character.conjurer, Character.medic };
@@ -103,7 +144,7 @@ class Healer extends Character {
 
     @Override
     public void attackOpponent(Character ally) {
-        ally.health += 0.1 * this.attack;
+        ally.setHealth(0.1 * this.getAttack());
     }
 
 }
