@@ -7,6 +7,7 @@ public class User implements Serializable{
     private int userID;
     private String homeLand;
     private double coins;
+    private int XP;
     // last Login ??
 
     public ArrayList<Character> characters = new ArrayList<>();
@@ -55,5 +56,12 @@ public class User implements Serializable{
 
     public void setCoins(double coins) {
         this.coins = coins;
+    }
+    public int getXP() {
+        return XP;
+    }
+
+    public void incrementXP() {
+        this.XP++;
     }
 }
