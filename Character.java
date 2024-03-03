@@ -1,11 +1,12 @@
 
 //import java.util.ArrayList;
 //import java.util.HashMap;
+import java.io.Serializable;
 
-public class Character {
+public class Character implements Serializable{
     private String name;
-    private int price;
-    private double attack, defence, health, speed;
+    // private int price;
+    private double price,attack, defence, health, speed;
 
     public Character(String name, int price, float attack, float defence, float health, float speed) {
         // a common constructor
@@ -36,11 +37,11 @@ public class Character {
         return this.attack;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -132,7 +133,7 @@ public class Character {
 
 }
 
-class Archer extends Character {
+class Archer extends Character{
     private Archer(String name, int price, float attack, float defence, float health, float speed) {
         super(name, price, attack, defence, health, speed);
     }
