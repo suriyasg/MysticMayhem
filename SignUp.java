@@ -1,26 +1,25 @@
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Scanner;
-
+//import java.util.Scanner;
 
 public class SignUp {
-    private static Scanner scanner = new Scanner(System.in);
+    // private static Scanner scanner = new Scanner(System.in);
     // private static UserProfiles profiles = new UserProfiles();
 
     private static UserProfiles savedProfiles = null;
 
-    public static String render() throws IOException, ClassNotFoundException{
+    public static String render() throws IOException, ClassNotFoundException {
         Path currentRelativePath = Paths.get("");
         String workingDir = currentRelativePath.toAbsolutePath().toString();
 
-        boolean doesExists = new File(workingDir+"/UserProfile.ser").isFile();
+        boolean doesExists = new File(workingDir + "/UserProfile.ser").isFile();
         if (!doesExists) {
             UserProfiles dummyUsers = new UserProfiles();
             // dummyUsers.addUserName("Suriya1");
             // dummyUsers.addUserName("Suriya2");
             // dummyUsers.addUserName("Suriya3");
-    
+
             FileOutputStream userProfileFile = new FileOutputStream("UserProfile.ser");
             ObjectOutputStream userProfileOut = new ObjectOutputStream(userProfileFile);
             userProfileOut.writeObject(dummyUsers);
@@ -28,34 +27,33 @@ public class SignUp {
             userProfileFile.close();
         }
 
-        FileInputStream FileIn = new FileInputStream(workingDir+"/UserProfile.ser"); // need to get path dynamically
+        FileInputStream FileIn = new FileInputStream(workingDir + "/UserProfile.ser"); // need to get path dynamically
         ObjectInputStream in = new ObjectInputStream(FileIn);
         savedProfiles = (UserProfiles) in.readObject();
         in.close();
         FileIn.close();
-    
+
         FileOutputStream userProfileFile = new FileOutputStream("UserProfile.ser");
         ObjectOutputStream userProfileOut = new ObjectOutputStream(userProfileFile);
 
         System.out.println("Welcome To Sign Up Page!");
 
         System.out.print("Enter your name :");
-        String name = scanner.nextLine();
-
+        String name = Main.universalScanner.nextLine();
 
         System.out.print("Enter your user name (you can not reset it later) :");
-        String userName = scanner.nextLine();
-        while(savedProfiles.isAlreadyTaken(userName)){
+        String userName = Main.universalScanner.nextLine();
+        while (savedProfiles.isAlreadyTaken(userName)) {
             System.out.println("User name is already taken! try a different one");
             System.out.print("Enter your user name (you can not reset it later) :");
-            userName = scanner.nextLine();
+            userName = Main.universalScanner.nextLine();
         }
-        User newUser = new User(userName,savedProfiles.getNumberOfUsers()+1);
+        User newUser = new User(userName, savedProfiles.getNumberOfUsers() + 1);
         newUser.setName(name);
         // newUser.setUserName(userName); user name read-only once defined
         savedProfiles.addUserName(userName);
-        
-        FileOutputStream newUserFile = new FileOutputStream(userName+".ser");
+
+        FileOutputStream newUserFile = new FileOutputStream(userName + ".ser");
         ObjectOutputStream newUserOut = new ObjectOutputStream(newUserFile);
 
         System.out.println("Congrats, You are the " + savedProfiles.getNumberOfUsers() + " User!");
@@ -68,7 +66,7 @@ public class SignUp {
 
         userProfileOut.close();
         userProfileFile.close();
-        scanner.close();
+        // scanner.close();
         System.out.println("User saved!");
         return userName;
 
