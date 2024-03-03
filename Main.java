@@ -1,6 +1,7 @@
 import java.io.*;
+
 public class Main {
-    public static void main(String[] args) throws IOException, ClassNotFoundException{
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         System.out.println("Weclome to Mystic MAhem!");
         System.out.println("1. Log1n    2. SignUp  3. exit game (Choose an appropriate number)");
         // read "About game, devs (us) 😅"
@@ -10,7 +11,7 @@ public class Main {
         String userName;
         if (choice == 1) {
             userName = LogIn.render();
-        }else if(choice == 2){
+        } else if (choice == 2) {
             userName = SignUp.render();
         }else{
             return;
@@ -18,7 +19,7 @@ public class Main {
 
         if(userName == null){;
             return;
-        }else{
+        } else {
             MainMenu.render(userName);
         }
         return;

@@ -18,8 +18,10 @@ public class Character {
     }
 
     public void printInfo() {
-        System.out.println("Name: " + this.name + "\nPrice: " + this.price + " gc\nAttack: " + this.attack
-                + "\nDefence: " + this.defence + "\nHealth: " + this.defence + "\nSpeed: " + this.speed);
+        System.out.printf("Name: %s\nPrice: %.1f Gold coins\nAttack: %.1f\nDefence: %.1f\nHealth: %.1f\nSpeed: %.1f\n",
+                name, price, attack, defence, health, speed);
+        // "Name: " + name + "\nPrice: " + price + " gc\nAttack: " + attack
+        // + "\nDefence: " + defence + "\nHealth: " + defence + "\nSpeed: " + speed
     }
 
     public void attackOpponent(Character op) { // attacking procedure is same for most of the characters
