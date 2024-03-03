@@ -11,6 +11,7 @@ public class User implements Serializable {
     // last Login ??
 
     public ArrayList<Character> characters = new ArrayList<>();
+    public boolean hasValidArmy = (characters.size() == 5);
 
     public User(String userName, int id) {
         this.userName = userName;
@@ -77,16 +78,16 @@ public class User implements Serializable {
             setCoins(remainingCoins);
             characters.add(c);
         }
-        System.out.println("Your current balance :" + getCoins() + " Gold coins.");
+        System.out.println("Your current balance : " + getCoins() + " Gold coins.");
 
     }
 
-    public void won(int enemyCoins){
+    public void won(int enemyCoins) {
         this.coins += enemyCoins * 0.2;
         this.incrementXP();
     }
-    
-    public void lost(){
+
+    public void lost() {
         this.coins -= this.coins * 0.2;
     }
 }
