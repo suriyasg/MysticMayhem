@@ -20,13 +20,13 @@ public class BuyCharacter {
         int choice = InputProcessor.getInt();
         if (choice == 1) {
             System.out.println("Which Archer you want to buy?");
-            System.out.println("1. Shooter from hillcr");
-            System.out.println("2. Ranger from ");
-            System.out.println("3. SunFire from ");
-            System.out.println("4. Zing from");
-            System.out.println("5. Saggitarius from ");
+            System.out.println("1. Shooter");
+            System.out.println("2. Ranger");
+            System.out.println("3. SunFire");
+            System.out.println("4. Zing");
+            System.out.println("5. Saggitarius");
             System.out.println("press 6 to go back");
-            System.out.println("Enter suitable number");
+            System.out.print("Enter suitable number");
 
             choice = InputProcessor.getInt();
 
@@ -50,12 +50,148 @@ public class BuyCharacter {
             }
 
         } else if (choice == 2) {
+            System.out.println("Which Knight you want to buy?");
+            System.out.println("1.Squire");
+            System.out.println("2.Cavalier ");
+            System.out.println("3.Templar ");
+            System.out.println("4.Zoro ");
+            System.out.println("5.Swiftblade");
+            System.out.println("press 6 to go back");
+            System.out.print("Enter suitable number: ");
+            choice = InputProcessor.getInt();
+
+            switch (choice) {
+                case 1:
+                    Knight squire = new Knight("Squire", 85, 8, 9, 7, 8);
+                    currentUser.buyCharacter(squire);
+                    break;
+                case 2:
+                    Knight cavalier = new Knight("Cavalier", 110, 10, 12, 7, 10);
+                    currentUser.buyCharacter(cavalier);
+                    break;
+                case 3:
+                    Knight templar = new Knight("Templar", 155, 14, 16, 12, 12);
+                    currentUser.buyCharacter(templar);
+                    break;
+                case 4:
+                    Knight zoro = new Knight("Zoro", 180, 17, 16, 13, 14);
+                    currentUser.buyCharacter(zoro);
+                    break;
+                case 5:
+                    Knight swiftblade = new Knight("Swiftblade", 250, 18, 20, 17, 13);
+                    currentUser.buyCharacter(swiftblade);
+                    break;
+                default:
+                    BuyCharacter.render(currentUser);
+            }
 
         } else if (choice == 3) {
+            System.out.println("Which Mage you want to buy?");
+            System.out.println("1.Warlock");
+            System.out.println("2.Illusionist ");
+            System.out.println("3.Enchnater ");
+            System.out.println("4.Conjurer ");
+            System.out.println("5.Eldritch");
+            System.out.println("press 6 to go back");
+            System.out.print("Enter suitable number: ");
+            choice = InputProcessor.getInt();
+
+            switch (choice) {
+                case 1:
+                    Mage warlock = new Mage("Warlock", 100, 12, 7, 10, 12);
+                    currentUser.buyCharacter(warlock);
+                    break;
+                case 2:
+                    Mage illusionist = new Mage("Illusionist", 120, 13, 8, 12, 14);
+                    currentUser.buyCharacter(illusionist);
+                    break;
+                case 3:
+                    Mage enchanter = new Mage("Enchanter", 160, 16, 10, 13, 16);
+                    currentUser.buyCharacter(enchanter);
+                    break;
+                case 4:
+                    Mage conjurer = new Mage("Conjurer", 195, 18, 15, 14, 12);
+                    currentUser.buyCharacter(conjurer);
+                    break;
+                case 5:
+                    Mage eldritch = new Mage("Eldritch", 270, 19, 17, 18, 14);
+                    currentUser.buyCharacter(eldritch);
+                    break;
+                default:
+                    BuyCharacter.render(currentUser);
+            }
 
         } else if (choice == 4) {
+            System.out.println("Which Healer you want to buy?");
+            System.out.println("1.Soother");
+            System.out.println("2.Medic");
+            System.out.println("3.Alchemist");
+            System.out.println("4.Saint");
+            System.out.println("5.Lightbringer");
+            System.out.println("press 6 to go back");
+            System.out.print("Enter suitable number: ");
+            choice = InputProcessor.getInt();
+
+            switch (choice) {
+                case 1:
+                    Healer soother = new Healer("Soother", 95, 10, 8, 9, 6);
+                    currentUser.buyCharacter(soother);
+                    break;
+                case 2:
+                    Healer medic = new Healer("Medic", 125, 12, 9, 10, 7);
+                    currentUser.buyCharacter(medic);
+                    break;
+                case 3:
+                    Healer alchemist = new Healer("Alchemist", 150, 13, 13, 13, 13);
+                    currentUser.buyCharacter(alchemist);
+                    break;
+                case 4:
+                    Healer saint = new Healer("Saint", 200, 16, 14, 17, 9);
+                    currentUser.buyCharacter(saint);
+                    break;
+                case 5:
+                    Healer lightbringer = new Healer("Lightbringer", 260, 17, 15, 19, 12);
+                    currentUser.buyCharacter(lightbringer);
+                    break;
+                default:
+                    BuyCharacter.render(currentUser);
+            }
 
         } else if (choice == 5) {
+            System.out.println("Which Mythical Creature you want to buy?");
+            System.out.println("1.Dragon");
+            System.out.println("2.Basilisk ");
+            System.out.println("3.Hydra ");
+            System.out.println("4.Phoenix ");
+            System.out.println("5.Pegasus");
+            System.out.println("press 6 to go back");
+            System.out.print("Enter suitable number: ");
+            choice = InputProcessor.getInt();
+
+            switch (choice) {
+                case 1:
+                    MythicalCreature dragon = new MythicalCreature("Dragon", 120, 12, 14, 15, 8);
+                    currentUser.buyCharacter(dragon);
+                    break;
+                case 2:
+                    MythicalCreature basilisk = new MythicalCreature("Basilisk", 165, 15, 11, 10, 12);
+                    currentUser.buyCharacter(basilisk);
+                    break;
+                case 3:
+                    MythicalCreature hydra = new MythicalCreature("Hydra", 205, 12, 16, 15, 11);
+                    currentUser.buyCharacter(hydra);
+                    break;
+                case 4:
+                    MythicalCreature phoenix = new MythicalCreature("Phoenix", 275, 17, 13, 17, 19);
+                    currentUser.buyCharacter(phoenix);
+                    break;
+                case 5:
+                    MythicalCreature pegasus = new MythicalCreature("Pegasus", 340, 14, 18, 20, 20);
+                    currentUser.buyCharacter(pegasus);
+                    break;
+                default:
+                    BuyCharacter.render(currentUser);
+            }
 
         } else {
             MainMenu.render(currentUser.getUserName());

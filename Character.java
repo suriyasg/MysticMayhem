@@ -104,7 +104,7 @@ public class Character implements Serializable {
 }
 
 class Archer extends Character {
-    Archer(String name, int price, double attack, double defence, double health, double speed) {
+    private Archer(String name, int price, double attack, double defence, double health, double speed) {
         super(name, price, attack, defence, health, speed);
     }
 
@@ -133,6 +133,10 @@ class Archer extends Character {
 class Knight extends Character {
     public Knight(String name, int price, float attack, float defence, float health, float speed) {
         super(name, price, attack, defence, health, speed);
+    }
+
+    public static Knight makeSquire() {
+        return new Knight("Squire", 85, 8, 9, 7, 8);
     }
 
 }
