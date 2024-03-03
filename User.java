@@ -9,7 +9,7 @@ public class User implements Serializable{
     private int coins;
     // last Login ??
 
-    public ArrayList<Army> army;
+    public ArrayList<Character> characters;
 
     public User(String userName, int id) {
         this.userName = userName;

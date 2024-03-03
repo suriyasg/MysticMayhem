@@ -6,7 +6,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Scanner;
 
 public class MainMenu {
     public static void render(String userName) throws IOException, ClassNotFoundException{
@@ -25,9 +24,10 @@ public class MainMenu {
         in.close();
         FileIn.close();
 
+        System.out.println("Welcome to Main Menu");
         System.out.println(currentUser.getName() + " HomeLand : 🏞️ " + currentUser.getHomeLand());
         System.out.println("Coins : "+currentUser.getCoins());
-        System.out.println("Army : "+currentUser.army + "\n");
+        System.out.println("Army : "+currentUser.characters + "\n");
 
         System.out.println("1. Buy or Sell charecters");
         System.out.println("2. Change Homeland");
@@ -36,24 +36,18 @@ public class MainMenu {
         System.out.print("Press suitable option :");
         // delete account?? confirm button undo?
 
-        Scanner scanner = new Scanner(System.in);
-        String nexString = scanner.next();
-        scanner.nextLine();
-        int choice = Integer.parseInt(nexString);
-        // int choice = 1;
 
+        int choice = InputProcessor.getInt();
         if(choice == 1){
             // buy sell charectors
-            System.out.println("do that");
+            BuyCharacter.render(currentUser);
         }else if(choice == 2){
             // change home land
         }else if(choice == 3){
             // War!!! or Retreat
         }else{
-            scanner.close();
             return;
         }
-        scanner.close();
         return;
         
     }

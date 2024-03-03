@@ -88,11 +88,11 @@ public class Character {
     }
 
     // creating the required characters as static objects
-    public static Archer shooter = new Archer("Shooter", 80, 11, 4, 6, 9);
-    public static Archer ranger = new Archer("Ranger", 115, 14, 5, 8, 10);
-    public static Archer sunfire = new Archer("Sunfire", 160, 15, 5, 7, 14);
-    public static Archer zing = new Archer("Zing", 200, 16, 9, 11, 14);
-    public static Archer saggitarius = new Archer("Saggitarius", 230, 18, 7, 12, 17);
+    // public static Archer shooter = new Archer("Shooter", 80, 11, 4, 6, 9);
+    // public static Archer ranger = new Archer("Ranger", 115, 14, 5, 8, 10);
+    // public static Archer sunfire = new Archer("Sunfire", 160, 15, 5, 7, 14);
+    // public static Archer zing = new Archer("Zing", 200, 16, 9, 11, 14);
+    // public static Archer saggitarius = new Archer("Saggitarius", 230, 18, 7, 12, 17);
 
     public static Knight squire = new Knight("Squire", 85, 8, 9, 7, 8);
     public static Knight cavalier = new Knight("Cavalier", 110, 10, 12, 7, 10);
@@ -119,20 +119,36 @@ public class Character {
     public static Healer lightbringer = new Healer("Lightbringer", 260, 17, 15, 19, 12);
 
     // differentiating characters accordingto the homegrounds
-    public static Character[] highLanders = { Character.shooter, Character.ranger, Character.cavalier,
-            Character.enchanter, Character.zoro, Character.conjurer, Character.medic };
-    public static Character[] marshlanders = { Character.squire, Character.swiftblade, Character.warlock,
-            Character.alchemist, Character.basilisk, Character.hydra };
-    public static Character[] sunchildren = { Character.sunfire, Character.zing, Character.templar, Character.soother,
-            Character.lightbringer, Character.dragon, Character.phoenix };
-    public static Character[] mystics = { Character.saggitarius, Character.illusionist, Character.eldritch,
-            Character.saint, Character.pegasus };
+    // public static Character[] highLanders = { Character.shooter, Character.ranger, Character.cavalier,
+    //         Character.enchanter, Character.zoro, Character.conjurer, Character.medic };
+    // public static Character[] marshlanders = { Character.squire, Character.swiftblade, Character.warlock,
+    //         Character.alchemist, Character.basilisk, Character.hydra };
+    // public static Character[] sunchildren = { Character.sunfire, Character.zing, Character.templar, Character.soother,
+    //         Character.lightbringer, Character.dragon, Character.phoenix };
+    // public static Character[] mystics = { Character.saggitarius, Character.illusionist, Character.eldritch,
+    //         Character.saint, Character.pegasus };
 
 }
 
 class Archer extends Character {
-    public Archer(String name, int price, float attack, float defence, float health, float speed) {
+    private Archer(String name, int price, float attack, float defence, float health, float speed) {
         super(name, price, attack, defence, health, speed);
+    }
+
+    public static Archer makeShooter(){
+        return new Archer("Shooter", 80, 11, 4, 6, 9);
+    }
+    public static Archer makeRanger(){
+        return new Archer("Ranger", 115, 14, 5, 8, 10);
+    }
+    public static Archer makeSunFire(){
+        return new Archer("Sunfire", 160, 15, 5, 7, 14);
+    }
+    public static Archer makeZing(){
+        return new Archer("Zing", 200, 16, 9, 11, 14);
+    }
+    public static Archer makeSaggitarius(){
+        return new Archer("Saggitarius", 230, 18, 7, 12, 17);
     }
 
 }

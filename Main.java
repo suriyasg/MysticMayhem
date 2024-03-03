@@ -1,4 +1,3 @@
-import java.util.Scanner;
 import java.io.*;
 public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException{
@@ -6,9 +5,7 @@ public class Main {
         System.out.println("1. Log1n    2. SignUp  3. exit game (Choose an appropriate number)");
         // read "About game, devs (us) 😅"
 
-        Scanner scanner = new Scanner(System.in);
-        String nexString = scanner.nextLine(); // what if user enter non numerical input
-        int choice = Integer.parseInt(nexString);
+        int choice = InputProcessor.getInt();
 
         String userName;
         if (choice == 1) {
@@ -16,18 +13,14 @@ public class Main {
         }else if(choice == 2){
             userName = SignUp.render();
         }else{
-            scanner.close();
             return;
         }
 
-        if(userName == null){
-            scanner.close();
+        if(userName == null){;
             return;
         }else{
             MainMenu.render(userName);
         }
-
-        scanner.close();
         return;
     }
 }

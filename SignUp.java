@@ -1,11 +1,9 @@
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Scanner;
 
 
 public class SignUp {
-    private static Scanner scanner = new Scanner(System.in);
     // private static UserProfiles profiles = new UserProfiles();
 
     private static UserProfiles savedProfiles = null;
@@ -40,15 +38,15 @@ public class SignUp {
         System.out.println("Welcome To Sign Up Page!");
 
         System.out.print("Enter your name :");
-        String name = scanner.nextLine();
 
+        String name = InputProcessor.getString();
 
         System.out.print("Enter your user name (you can not reset it later) :");
-        String userName = scanner.nextLine();
+        String userName = InputProcessor.getString();
         while(savedProfiles.isAlreadyTaken(userName)){
             System.out.println("User name is already taken! try a different one");
             System.out.print("Enter your user name (you can not reset it later) :");
-            userName = scanner.nextLine();
+            userName = InputProcessor.getString();
         }
         User newUser = new User(userName,savedProfiles.getNumberOfUsers()+1);
         newUser.setName(name);
@@ -68,7 +66,6 @@ public class SignUp {
 
         userProfileOut.close();
         userProfileFile.close();
-        scanner.close();
         System.out.println("User saved!");
         return userName;
 

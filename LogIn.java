@@ -6,11 +6,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Scanner;
 
 
 public class LogIn {
-    public static Scanner scanner = new Scanner(System.in);
     private static UserProfiles savedProfiles = null;
     private static String Loggeduser;
     public static String render() throws IOException, ClassNotFoundException{
@@ -39,7 +37,7 @@ public class LogIn {
 
         System.out.println("Welcome To Log In Page!");
         System.out.print("Enter your user name :");
-        String userName = scanner.nextLine();
+        String userName = InputProcessor.getString();
 
         if(savedProfiles.isAlreadyTaken(userName)){
             Loggeduser = userName;
@@ -49,7 +47,7 @@ public class LogIn {
             System.out.println("if you want to create account press y");
             System.out.println("if you want to try log in again press r");
             System.out.println("if you want to exit the game press any other letters");
-            String answer = scanner.nextLine();
+            String answer = InputProcessor.getString();
 
             if(answer.toUpperCase().equals("Y")){
                 return SignUp.render();
@@ -60,8 +58,6 @@ public class LogIn {
                 return null;  //ends the program will it?
             }
         }
-        scanner.close();
-
         return Loggeduser;
     }
 }
