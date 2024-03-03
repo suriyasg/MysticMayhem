@@ -6,10 +6,10 @@ public class User implements Serializable{
     private String userName;
     private int userID;
     private String homeLand;
-    private int coins;
+    private double coins;
     // last Login ??
 
-    public ArrayList<Character> characters;
+    public ArrayList<Character> characters = new ArrayList<>();
 
     public User(String userName, int id) {
         this.userName = userName;
@@ -49,11 +49,11 @@ public class User implements Serializable{
         this.homeLand = homeLand;
     }
 
-    public int getCoins() {
+    public double getCoins() {
         return coins;
     }
 
-    public void setCoins(int coins) {
+    public void setCoins(double coins) {
         this.coins = coins;
     }
 }
