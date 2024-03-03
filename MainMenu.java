@@ -28,7 +28,11 @@ public class MainMenu {
         System.out.println("Welcome to Main Menu");
         System.out.println(currentUser.getName() + " HomeLand : 🏞️ " + currentUser.getHomeLand());
         System.out.println("Coins : "+currentUser.getCoins());
-        System.out.println("Army : "+currentUser.characters + "\n");
+        System.out.println("Characters at your service");
+        
+        for(Character soldier: currentUser.characters){
+            soldier.printInfo();
+        }
 
         System.out.println("1. Buy or Sell charecters");
         System.out.println("2. Change Homeland");
@@ -39,7 +43,7 @@ public class MainMenu {
         int choice = InputProcessor.getInt();
         if(choice == 1){
             // buy sell charectors
-            BuyCharacter.render(currentUser);
+            BuyCharacter.render(currentUser); // after buying charectors what happens re-render main menu??
         }else if(choice == 2){
             // change home land
         } else if (choice == 3) {
