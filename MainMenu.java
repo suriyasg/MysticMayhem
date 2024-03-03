@@ -19,7 +19,8 @@ public class MainMenu {
             return;
         }
 
-        FileInputStream FileIn = new FileInputStream(workingDir + "/" + userName + ".ser"); // need to get path dynamically
+        FileInputStream FileIn = new FileInputStream(workingDir + "/" + userName + ".ser"); // need to get path
+                                                                                            // dynamically
         ObjectInputStream in = new ObjectInputStream(FileIn);
         User currentUser = (User) in.readObject();
         in.close();
@@ -27,10 +28,10 @@ public class MainMenu {
 
         System.out.println("Welcome to Main Menu");
         System.out.println(currentUser.getName() + " HomeLand : 🏞️ " + currentUser.getHomeLand());
-        System.out.println("Coins : "+currentUser.getCoins());
+        System.out.println("Coins : " + currentUser.getCoins());
         System.out.println("Characters at your service");
-        
-        for(Character soldier: currentUser.characters){
+
+        for (Character soldier : currentUser.characters) {
             soldier.printInfo();
         }
 
@@ -39,18 +40,21 @@ public class MainMenu {
         System.out.println("3. Search for opponents");
         System.out.println("or to Exit press any other char");
 
-
         int choice = InputProcessor.getInt();
-        if(choice == 1){
-            // buy sell charectors
-            BuyCharacter.render(currentUser); // after buying charectors what happens re-render main menu??
-        }else if(choice == 2){
-            // change home land
-        } else if (choice == 3) {
-            // War!!! or Retreat
-        }else{
-            return;
+
+        switch (choice) {
+            case 1:
+                BuyCharacter.render(currentUser);
+                break;
+            case 2:
+                ChangeHomeland.render(currentUser);
+                break;
+            case 3:
+                // war
+            default:
+                return;
         }
+
         return;
 
     }
