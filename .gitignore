@@ -1,2 +1,4 @@
 classes/
 test.java
+.DS_Store
+.gitignore
