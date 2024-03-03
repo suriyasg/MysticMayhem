@@ -16,6 +16,7 @@ public class User implements Serializable {
         this.userName = userName;
         this.coins = 500;
         this.userID = id;
+        this.XP = 1;
     }
 
     public String getName() {
@@ -59,6 +60,7 @@ public class User implements Serializable {
     public void setCoins(int coins) {
         this.coins = coins;
     }
+
     public int getXP() {
         return XP;
     }
@@ -66,6 +68,7 @@ public class User implements Serializable {
     public void incrementXP() {
         this.XP++;
     }
+
     public void buyCharacter(Character c) {
         int remainingCoins = getCoins() - c.getPrice();
         if (remainingCoins < 0) {
@@ -76,5 +79,14 @@ public class User implements Serializable {
         }
         System.out.println("Your current balance :" + getCoins() + " Gold coins.");
 
+    }
+
+    public void won(int enemyCoins){
+        this.coins += enemyCoins * 0.2;
+        this.incrementXP();
+    }
+    
+    public void lost(){
+        this.coins -= this.coins * 0.2;
     }
 }
