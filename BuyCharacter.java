@@ -17,7 +17,7 @@ public class BuyCharacter {
         System.out.println("press 6 to go to main menu");
         System.out.println("Enter suitable number");
 
-        int choice = InputProcessor.getInt();
+        int choice = InputProcessor.getInt(1,6);
         if (choice == 1) {
             System.out.println("Which Archer you want to buy?");
             System.out.println("1. Shooter");
@@ -28,7 +28,7 @@ public class BuyCharacter {
             System.out.println("press 6 to go back");
             System.out.print("Enter suitable number");
 
-            choice = InputProcessor.getInt();
+            choice = InputProcessor.getInt(1,6);
 
             switch (choice) {
                 case 1:
@@ -64,7 +64,7 @@ public class BuyCharacter {
             System.out.println("5.Swiftblade");
             System.out.println("press 6 to go back");
             System.out.print("Enter suitable number: ");
-            choice = InputProcessor.getInt();
+            choice = InputProcessor.getInt(1,6);
 
             switch (choice) {
                 case 1:
@@ -100,7 +100,7 @@ public class BuyCharacter {
             System.out.println("5.Eldritch");
             System.out.println("press 6 to go back");
             System.out.print("Enter suitable number: ");
-            choice = InputProcessor.getInt();
+            choice = InputProcessor.getInt(1,6);
 
             switch (choice) {
                 case 1:
@@ -136,7 +136,7 @@ public class BuyCharacter {
             System.out.println("5.Lightbringer");
             System.out.println("press 6 to go back");
             System.out.print("Enter suitable number: ");
-            choice = InputProcessor.getInt();
+            choice = InputProcessor.getInt(1,6);
 
             switch (choice) {
                 case 1:
@@ -172,7 +172,7 @@ public class BuyCharacter {
             System.out.println("5.Pegasus");
             System.out.println("press 6 to go back");
             System.out.print("Enter suitable number: ");
-            choice = InputProcessor.getInt();
+            choice = InputProcessor.getInt(1,6);
 
             switch (choice) {
                 case 1:

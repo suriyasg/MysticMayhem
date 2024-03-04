@@ -26,18 +26,21 @@ public class MainMenu {
         in.close();
         FileIn.close();
 
+        System.out.println("-----------------------------");
         System.out.println("Welcome to Main Menu");
         System.out.println(currentUser.getName() + " HomeLand : 🏞️ " + currentUser.getHomeLand());
         System.out.println("Coins : " + currentUser.getCoins());
+        System.out.println("-----------------------------");
 
-        System.out.println("1. Create Your Army (only do this if you are new user!)");
-        System.out.println("2. Change Homeland");
-        System.out.println("3. view your Army");
-        System.out.println("4. Edit your Army");
-        System.out.println("5. Search for opponents");
-        System.out.println("or to Exit press any other char");
-
-        int choice = InputProcessor.getInt();
+        System.out.println("1 > Create Your Army (only do this if you are new user!)");
+        System.out.println("2 > Change Homeland");
+        System.out.println("3 > view your Army");
+        System.out.println("4 > Edit your Army");
+        System.out.println("5 > Search for opponents");
+        System.out.println("6 > to Exit");
+        System.out.println("-----------------------------");
+        System.out.print("> ");
+        int choice = InputProcessor.getInt(1,6);
 
         switch (choice) {
             case 1:
@@ -49,25 +52,40 @@ public class MainMenu {
                 break;
             case 3:
                 MainMenu.printArmy(currentUser);
+                break;
             case 4:
-                // edit army
+                System.out.println("1. Sell Characters");
+                System.out.println("2. Buy Or Discard Equipments");
+                choice = InputProcessor.getInt(1,2);
+                switch (choice) {
+                    case 1:
+                        SellCharacter.render(currentUser);
+                        break;
+                    case 2:
+                        Attic.render(currentUser);
+                        break;
+                    default:
+                        return;
+                }
+                break;
             case 5:
                 // war
+                break;
             default:
                 return;
         }
-
+        MainMenu.render(currentUser.getUserName());
         return;
-
     }
 
     public static void printArmy(User CurrentUser) throws IOException, ClassNotFoundException {
         System.out.println("Characters at your service");
+        System.out.println("---------------------------");
 
         for (Character soldier : CurrentUser.characters) {
             soldier.printInfo();
+            System.out.println("-------------");
         }
-        MainMenu.render(CurrentUser.getUserName());
         return;
     }
 }

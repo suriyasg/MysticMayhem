@@ -4,7 +4,7 @@ import java.io.ObjectOutputStream;
 
 public class CreateArmy {
     public static void render(User currentUser) throws ClassNotFoundException, IOException {
-        if (currentUser.characters.size() == 5) {
+        if (currentUser.characters.size() > 0) {
             System.err.println(
                     "You have already Created your army!! Please select Edit option in MainMenu to edit your Army!!");
             MainMenu.render(currentUser.getUserName());
@@ -32,8 +32,11 @@ public class CreateArmy {
         MythicalCreature dDragon = new MythicalCreature("Dragon", 120, 12, 14, 15, 8);
         currentUser.buyCharacter(dDragon);
 
-        System.out.println(
-                "Your Army: \nArcher -> Shooter\nKnight -> Squire\nMage -> Warlock\nHealer -> Soother\nMystical Creature -> Dragon");
+        System.out.println("Now you have, ");
+        for (Character character : currentUser.characters) {
+            System.out.print(character.getName() + " ");
+        }
+        System.out.println("");
         System.out.println("You can edit your army as you Earn Coins in matches. :-)");
 
         FileOutputStream currentUserFile = new FileOutputStream(currentUser.getUserName() + ".ser");
@@ -41,7 +44,5 @@ public class CreateArmy {
         currentUserOut.writeObject(currentUser);
         currentUserOut.close();
         currentUserFile.close();
-        MainMenu.render(currentUser.getUserName());
-
     }
 }

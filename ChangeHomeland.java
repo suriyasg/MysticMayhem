@@ -9,7 +9,7 @@ public class ChangeHomeland {
                 + "\nPlease remeber that changing your Homeground may affect your performance");
         System.out.print(
                 "Please Select your new Homeland\n1.Hillcrest\n2.Marshand\n3.Desert\n4.Arcane\nPlease Enter your input: ");
-        int choice = InputProcessor.getInt();
+        int choice = InputProcessor.getInt(1,4);
         switch (choice) {
             case 1:
                 CurrentUser.setHomeLand("Hillcrest");
@@ -25,7 +25,6 @@ public class ChangeHomeland {
                 break;
             default:
                 System.out.print("Please Enter a valid choice: ");
-                InputProcessor.getInt();
         }
 
         FileOutputStream currentUserFile = new FileOutputStream(CurrentUser.getUserName() + ".ser");

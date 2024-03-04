@@ -4,6 +4,8 @@ public class Character implements Serializable {
     private String name;
     private int price;
     private double attack, defence, health, speed;
+    private Equipment armour;
+    private Equipment artefact;
 
     public Character(String name, int price, double attack, double defence, double health, double speed) {
         // a common constructor
@@ -26,6 +28,9 @@ public class Character implements Serializable {
         op.setHealth(op.getHealth() - (0.5 * this.getAttack() - op.getDefence()));
     }
 
+    public String getName() {
+        return this.name;
+    }
     public void setAttack(double attack) {
         this.attack = attack;
     }
@@ -66,25 +71,79 @@ public class Character implements Serializable {
         this.speed = speed;
     }
 
-    public void assignEquipment(Equipment eq) {
-        this.setPrice(this.getPrice() + (int) (0.2 * eq.getPrice()));
-        this.setAttack(this.getAttack() + eq.getAttack());
-        this.setDefence(this.getDefence() + eq.getDefence());
-        this.setHealth(this.getHealth() + eq.getHealth());
-        this.setSpeed(this.getSpeed() + eq.getSpeed());
+    public Equipment getArmour() {
+        return armour;
     }
 
-    public void removeEquipment(Equipment eq) {
-        this.setPrice(this.getPrice() - (int) (0.2 * eq.getPrice()));
-        this.setAttack(this.getAttack() - eq.getAttack());
-        this.setDefence(this.getDefence() - eq.getDefence());
-        this.setHealth(this.getHealth() - eq.getHealth());
-        this.setSpeed(this.getSpeed() - eq.getSpeed());
+    public Equipment getArtefact() {
+        return artefact;
     }
 
-    public void changeEquipment(Equipment oldEq, Equipment newEq) {
-        this.removeEquipment(oldEq);
-        this.assignEquipment(newEq);
+    public boolean hasArmour(){
+        if (this.armour != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean hasArtefact(){
+        if (this.artefact != null) {
+            return true;
+        }
+        return false;
+    }
+
+    private void wearArmour(Equipment newArmour) {
+        this.armour = newArmour;
+        this.setPrice(this.getPrice() + (int) (0.2 * newArmour.getPrice()));
+        this.setAttack(this.getAttack() + newArmour.getAttack());
+        this.setDefence(this.getDefence() + newArmour.getDefence());
+        this.setHealth(this.getHealth() + newArmour.getHealth());
+        this.setSpeed(this.getSpeed() + newArmour.getSpeed());
+    }
+
+    private void equipArtefact(Equipment newArtefact) {
+        this.artefact = newArtefact;
+        this.setPrice(this.getPrice() + (int) (0.2 * newArtefact.getPrice()));
+        this.setAttack(this.getAttack() + newArtefact.getAttack());
+        this.setDefence(this.getDefence() + newArtefact.getDefence());
+        this.setHealth(this.getHealth() + newArtefact.getHealth());
+        this.setSpeed(this.getSpeed() + newArtefact.getSpeed());
+    }
+
+    private void removeArmour() {
+        this.setPrice(this.getPrice() - (int) (0.2 * this.armour.getPrice()));
+        this.setAttack(this.getAttack() - this.armour.getAttack());
+        this.setDefence(this.getDefence() - this.armour.getDefence());
+        this.setHealth(this.getHealth() - this.armour.getHealth());
+        this.setSpeed(this.getSpeed() - this.armour.getSpeed());
+        this.armour = null;
+    }
+
+    private void unequipArtefact() {
+        this.setPrice(this.getPrice() - (int) (0.2 * this.artefact.getPrice()));
+        this.setAttack(this.getAttack() - this.artefact.getAttack());
+        this.setDefence(this.getDefence() - this.artefact.getDefence());
+        this.setHealth(this.getHealth() - this.artefact.getHealth());
+        this.setSpeed(this.getSpeed() - this.artefact.getSpeed());
+        this.artefact = null;
+    }
+
+    public void changeArmour(Equipment newArmour) {
+        if(this.hasArmour()){
+            this.removeArmour();
+            this.wearArmour(newArmour);
+        }
+        this.wearArmour(newArmour);
+        return;
+    }
+    public void changeEquipment(Equipment newArtefact) {
+        if (hasArtefact()) {
+            this.unequipArtefact();
+            this.equipArtefact(newArtefact);
+        }
+        this.equipArtefact(newArtefact);
+        return;
     }
 
     // differentiating characters accordingto the homegrounds

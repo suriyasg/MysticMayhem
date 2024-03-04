@@ -70,13 +70,32 @@ public class User implements Serializable {
         this.XP++;
     }
 
-    public void buyCharacter(Character c) {
-        int remainingCoins = getCoins() - c.getPrice();
+    public void buyCharacter(Character character) {
+        int remainingCoins = getCoins() - character.getPrice();
         if (remainingCoins < 0) {
             System.out.println("You don't have enough money to buy this character");
         } else {
             setCoins(remainingCoins);
-            characters.add(c);
+            characters.add(character);
+        }
+        System.out.println("Your current balance : " + getCoins() + " Gold coins.");
+
+    }
+
+    public void sellCharacter(Character character){
+        int currentValue = (int) (character.getPrice() * 0.9);
+        this.setCoins(this.getCoins() + currentValue);
+        this.characters.remove(character);
+        System.out.println("Your current balance : " + getCoins() + " Gold coins.");
+    }
+
+    public void buyEquipment(Character luckyCharater, Equipment equipment) {
+        int remainingCoins = getCoins() - equipment.getPrice();
+        if (remainingCoins < 0) {
+            System.out.println("You don't have enough money to buy this equipment");
+        } else {
+            setCoins(remainingCoins);
+            luckyCharater.changeArmour(equipment);
         }
         System.out.println("Your current balance : " + getCoins() + " Gold coins.");
 

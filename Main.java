@@ -2,11 +2,13 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        ConsoleStyler.printBlueBright("Weclome to Mystic Mayhem!");
+        System.out.println("-----------------------------");
+        ConsoleStyler.printBlueBright("| Weclome to Mystic Mayhem! |");
+        System.out.println("-----------------------------");
         ConsoleStyler.printBlue("1. Log1n    2. SignUp  3. exit game (Choose an appropriate number)");
         // read "About game, devs (us) 😅"2
 
-        int choice = InputProcessor.getInt();
+        int choice = InputProcessor.getInt(1,2);
 
         String userName;
         if (choice == 1) {

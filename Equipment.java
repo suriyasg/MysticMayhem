@@ -1,4 +1,6 @@
-public abstract class Equipment {
+import java.io.Serializable;
+
+public abstract class Equipment implements Serializable{
     private String name;
     private int price;
     private int attack;
