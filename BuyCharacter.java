@@ -7,7 +7,7 @@ import java.io.ObjectOutputStream;
  */
 public class BuyCharacter {
     public static void render(User currentUser) throws ClassNotFoundException, IOException {
-        System.out.println(currentUser.getName() + ", Welcome To Our Shop! spend your monye wisely!"); // funny pharses
+        System.out.println(currentUser.getName() + ", Welcome To Our Shop! spend your money wisely!"); // funny pharses
         System.out.println("Which Charecter you want to buy?");
         System.out.println("1. Archer");
         System.out.println("2. Knight");
@@ -30,23 +30,29 @@ public class BuyCharacter {
 
             choice = InputProcessor.getInt();
 
-            if (choice == 1) {
-                Archer newShooter = Archer.makeShooter();
-                currentUser.buyCharacter(newShooter);
-            } else if (choice == 2) {
-                Archer newRanger = Archer.makeRanger();
-                currentUser.buyCharacter(newRanger);
-            } else if (choice == 3) {
-                Archer newSunfire = Archer.makeSunFire();
-                currentUser.buyCharacter(newSunfire);
-            } else if (choice == 4) {
-                Archer newZing = Archer.makeZing();
-                currentUser.buyCharacter(newZing);
-            } else if (choice == 5) {
-                Archer saggitarius = Archer.makeSaggitarius();
-                currentUser.buyCharacter(saggitarius);
-            } else {
-                BuyCharacter.render(currentUser);
+            switch (choice) {
+                case 1:
+                    Archer shooter = new Archer("Shooter", 80, 11, 4, 6, 9);
+                    currentUser.buyCharacter(shooter);
+                    break;
+                case 2:
+                    Archer ranger = new Archer("Ranger", 115, 14, 5, 8, 10);
+                    currentUser.buyCharacter(ranger);
+                    break;
+                case 3:
+                    Archer sunfire = new Archer("Sunfire", 160, 15, 5, 7, 14);
+                    currentUser.buyCharacter(sunfire);
+                    break;
+                case 4:
+                    Archer zing = new Archer("Zing", 200, 16, 9, 11, 14);
+                    currentUser.buyCharacter(zing);
+                    break;
+                case 5:
+                    Archer saggitarius = new Archer("Saggitarius", 230, 18, 7, 12, 17);
+                    currentUser.buyCharacter(saggitarius);
+                    break;
+                default:
+                    BuyCharacter.render(currentUser);
             }
 
         } else if (choice == 2) {
