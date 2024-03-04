@@ -2,13 +2,19 @@ import java.util.Scanner;
 
 public class InputProcessor {
     private static Scanner scanner = new Scanner(System.in);
-
-    public static int getInt() {
+    // handle when people give out of bound numbers via InputProcessor by giving parameters
+    public static int getInt(int low, int high) {
         try {
-            return Integer.parseInt(scanner.nextLine());
+            int choice =  Integer.parseInt(scanner.nextLine());
+            if(choice >= low && choice <= high){
+                return choice;
+            }else{
+                System.out.print("Please Enter a Number within range: ");
+                return getInt(low,high);
+            }
         } catch (NumberFormatException e) {
             System.out.print("Please Enter a Number: ");
-            return getInt();
+            return getInt(low,high);
         }
 
     }
