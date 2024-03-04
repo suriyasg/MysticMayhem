@@ -104,41 +104,15 @@ public class Character implements Serializable {
 }
 
 class Archer extends Character {
-    private Archer(String name, int price, double attack, double defence, double health, double speed) {
+    public Archer(String name, int price, double attack, double defence, double health, double speed) {
         super(name, price, attack, defence, health, speed);
     }
-
-    public static Archer makeShooter() {
-        return new Archer("Shooter", 80, 11, 4, 6, 9);
-    }
-
-    public static Archer makeRanger() {
-        return new Archer("Ranger", 115, 14, 5, 8, 10);
-    }
-
-    public static Archer makeSunFire() {
-        return new Archer("Sunfire", 160, 15, 5, 7, 14);
-    }
-
-    public static Archer makeZing() {
-        return new Archer("Zing", 200, 16, 9, 11, 14);
-    }
-
-    public static Archer makeSaggitarius() {
-        return new Archer("Saggitarius", 230, 18, 7, 12, 17);
-    }
-
 }
 
 class Knight extends Character {
     public Knight(String name, int price, float attack, float defence, float health, float speed) {
         super(name, price, attack, defence, health, speed);
     }
-
-    public static Knight makeSquire() {
-        return new Knight("Squire", 85, 8, 9, 7, 8);
-    }
-
 }
 
 class Mage extends Character {

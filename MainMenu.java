@@ -35,21 +35,28 @@ public class MainMenu {
             soldier.printInfo();
         }
 
-        System.out.println("1. Buy or Sell charecters");
+        System.out.println("1. Create Your Army (only do this if you are new user!)");
         System.out.println("2. Change Homeland");
-        System.out.println("3. Search for opponents");
+        System.out.println("3. view your Army");
+        System.out.println("4. Edit your Army");
+        System.out.println("5. Search for opponents");
         System.out.println("or to Exit press any other char");
 
         int choice = InputProcessor.getInt();
 
         switch (choice) {
             case 1:
-                BuyCharacter.render(currentUser);
+                // BuyCharacter.render(currentUser);
+                CreateArmy.render(currentUser);
                 break;
             case 2:
                 ChangeHomeland.render(currentUser);
                 break;
             case 3:
+                // view army
+            case 4:
+                // edit army
+            case 5:
                 // war
             default:
                 return;
