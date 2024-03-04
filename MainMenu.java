@@ -29,11 +29,6 @@ public class MainMenu {
         System.out.println("Welcome to Main Menu");
         System.out.println(currentUser.getName() + " HomeLand : 🏞️ " + currentUser.getHomeLand());
         System.out.println("Coins : " + currentUser.getCoins());
-        System.out.println("Characters at your service");
-
-        for (Character soldier : currentUser.characters) {
-            soldier.printInfo();
-        }
 
         System.out.println("1. Create Your Army (only do this if you are new user!)");
         System.out.println("2. Change Homeland");
@@ -53,7 +48,7 @@ public class MainMenu {
                 ChangeHomeland.render(currentUser);
                 break;
             case 3:
-                // view army
+                MainMenu.printArmy(currentUser);
             case 4:
                 // edit army
             case 5:
@@ -64,5 +59,15 @@ public class MainMenu {
 
         return;
 
+    }
+
+    public static void printArmy(User CurrentUser) throws IOException, ClassNotFoundException {
+        System.out.println("Characters at your service");
+
+        for (Character soldier : CurrentUser.characters) {
+            soldier.printInfo();
+        }
+        MainMenu.render(CurrentUser.getUserName());
+        return;
     }
 }
