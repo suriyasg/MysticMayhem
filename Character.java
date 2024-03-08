@@ -3,6 +3,7 @@ import java.io.Serializable;
 public class Character implements Serializable {
     private String name;
     private int price;
+    protected int pos; // position in army (List)
     private double attack, defence, health, speed;
     private Equipment armour;
     private Equipment artefact;
@@ -18,6 +19,10 @@ public class Character implements Serializable {
     }
 
     public void printInfo() {
+        if (this.equals(null)) {
+            System.out.println("Character Slot is empty!!!");
+            return;
+        }
         System.out.printf("Name: %s\nPrice: %d Gold coins\nAttack: %.1f\nDefence: %.1f\nHealth: %.1f\nSpeed: %.1f\n",
                 name, price, attack, defence, health, speed);
         // "Name: " + name + "\nPrice: " + price + " gc\nAttack: " + attack
@@ -31,6 +36,7 @@ public class Character implements Serializable {
     public String getName() {
         return this.name;
     }
+
     public void setAttack(double attack) {
         this.attack = attack;
     }
@@ -79,18 +85,26 @@ public class Character implements Serializable {
         return artefact;
     }
 
-    public boolean hasArmour(){
+    public boolean hasArmour() {
         if (this.armour != null) {
             return true;
         }
         return false;
     }
 
-    public boolean hasArtefact(){
+    public boolean hasArtefact() {
         if (this.artefact != null) {
             return true;
         }
         return false;
+    }
+
+    public int getPos() {
+        return this.pos;
+    }
+
+    public void setPos(int pos) {
+        this.pos = pos;
     }
 
     private void wearArmour(Equipment newArmour) {
@@ -130,13 +144,14 @@ public class Character implements Serializable {
     }
 
     public void changeArmour(Equipment newArmour) {
-        if(this.hasArmour()){
+        if (this.hasArmour()) {
             this.removeArmour();
             this.wearArmour(newArmour);
         }
         this.wearArmour(newArmour);
         return;
     }
+
     public void changeEquipment(Equipment newArtefact) {
         if (hasArtefact()) {
             this.unequipArtefact();
@@ -165,18 +180,22 @@ public class Character implements Serializable {
 class Archer extends Character {
     public Archer(String name, int price, double attack, double defence, double health, double speed) {
         super(name, price, attack, defence, health, speed);
+        setPos(0);
     }
+
 }
 
 class Knight extends Character {
     public Knight(String name, int price, float attack, float defence, float health, float speed) {
         super(name, price, attack, defence, health, speed);
+        setPos(1);
     }
 }
 
 class Mage extends Character {
     public Mage(String name, int price, float attack, float defence, float health, float speed) {
         super(name, price, attack, defence, health, speed);
+        setPos(2);
     }
 
 }
@@ -184,6 +203,7 @@ class Mage extends Character {
 class MythicalCreature extends Character {
     public MythicalCreature(String name, int price, float attack, float defence, float health, float speed) {
         super(name, price, attack, defence, health, speed);
+        setPos(3);
     }
 
 }
@@ -191,6 +211,7 @@ class MythicalCreature extends Character {
 class Healer extends Character {
     public Healer(String name, int price, float attack, float defence, float health, float speed) {
         super(name, price, attack, defence, health, speed);
+        setPos(4);
     }
 
     @Override

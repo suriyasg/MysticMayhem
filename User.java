@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class User implements Serializable {
     private String name;
@@ -10,7 +11,7 @@ public class User implements Serializable {
     private int XP;
     // last Login ??
 
-    public ArrayList<Character> characters = new ArrayList<>();
+    public ArrayList<Character> characters = new ArrayList<>(Collections.nCopies(5, null));;
     public boolean hasValidArmy = (characters.size() == 5);
 
     public User(String userName, int id) {
@@ -76,17 +77,41 @@ public class User implements Serializable {
             System.out.println("You don't have enough money to buy this character");
         } else {
             setCoins(remainingCoins);
-            characters.add(character);
+            if (this.characters.get(character.getPos()) == null) {
+                characters.remove(character.getPos());
+                characters.add(character.getPos(), character);
+                System.out.println("Your current balance : " + getCoins() + " Gold coins.");
+            } else {
+                System.out.println("You Already Have a warrior in this category!! Please Sell it or Exchange it");
+            }
         }
-        System.out.println("Your current balance : " + getCoins() + " Gold coins.");
 
     }
 
-    public void sellCharacter(Character character){
+    public void sellCharacter(Character character) {
         int currentValue = (int) (character.getPrice() * 0.9);
         this.setCoins(this.getCoins() + currentValue);
         this.characters.remove(character);
+        this.characters.add(character.getPos(), null); // adding null element as a placeholder
         System.out.println("Your current balance : " + getCoins() + " Gold coins.");
+    }
+
+    public void changeCharacter(Character oldChar, Character newChar) {
+        if (oldChar.equals(null)) {
+            return;
+        }
+        if (oldChar.getName().equals(newChar.getName())) {
+            System.out.println("Cannot Exchange Same character");
+            return;
+        }
+        if (newChar.getPrice() > (this.getCoins() + (int) (oldChar.getPrice() * 0.9))) {
+            System.out.println("Not Enough Money to Make the Exchange!!!!!");
+            return;
+        }
+        System.out.println("Selling " + oldChar.getName());
+        this.sellCharacter(oldChar);
+        System.out.println("Buying " + newChar.getName());
+        this.buyCharacter(newChar);
     }
 
     public void buyEquipment(Character luckyCharater, Equipment equipment) {

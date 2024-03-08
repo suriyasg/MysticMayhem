@@ -1,8 +1,10 @@
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 //import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 //import java.io.ObjectOutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -40,7 +42,7 @@ public class MainMenu {
         System.out.println("6 > to Exit");
         System.out.println("-----------------------------");
         System.out.print("> ");
-        int choice = InputProcessor.getInt(1,6);
+        int choice = InputProcessor.getInt(1, 6);
 
         switch (choice) {
             case 1:
@@ -54,15 +56,23 @@ public class MainMenu {
                 MainMenu.printArmy(currentUser);
                 break;
             case 4:
-                System.out.println("1. Sell Characters");
-                System.out.println("2. Buy Or Discard Equipments");
-                choice = InputProcessor.getInt(1,2);
+                System.out.println("1. Buy Characters");
+                System.out.println("2. Sell Characters");
+                System.out.println("3. Exchange Characters");
+                System.out.println("4. Buy Or Discard Equipments");
+                choice = InputProcessor.getInt(1, 4);
                 switch (choice) {
                     case 1:
-                        SellCharacter.render(currentUser);
+                        BuyCharacter.render(currentUser);
                         break;
                     case 2:
+                        SellCharacter.render(currentUser);
+                        break;
+                    case 4:
                         Attic.render(currentUser);
+                        break;
+                    case 3:
+                        ExchangeCharacters.render(currentUser);
                         break;
                     default:
                         return;
@@ -71,6 +81,13 @@ public class MainMenu {
             case 5:
                 // war
                 break;
+            case 6:
+                FileOutputStream currentUserFile = new FileOutputStream(currentUser.getUserName() + ".ser");
+                ObjectOutputStream currentUserOut = new ObjectOutputStream(currentUserFile);
+                currentUserOut.writeObject(currentUser);
+                currentUserOut.close();
+                currentUserFile.close();
+                System.exit(0);
             default:
                 return;
         }
@@ -83,7 +100,12 @@ public class MainMenu {
         System.out.println("---------------------------");
 
         for (Character soldier : CurrentUser.characters) {
-            soldier.printInfo();
+
+            if (soldier != null) {
+                soldier.printInfo();
+            }
+
+            // System.out.println("Character will apperar Here!");
             System.out.println("-------------");
         }
         return;
