@@ -4,7 +4,8 @@ import java.io.ObjectOutputStream;
 
 public class CreateArmy {
     public static void render(User currentUser) throws ClassNotFoundException, IOException {
-        if (currentUser.characters.size() > 0) {
+        if (currentUser.characters.size() > 0
+                && !(currentUser.characters.stream().allMatch(element -> element == null))) {
             System.err.println(
                     "You have already Created your army!! Please select Edit option in MainMenu to edit your Army!!");
             MainMenu.render(currentUser.getUserName());
