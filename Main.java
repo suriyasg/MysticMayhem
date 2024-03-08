@@ -8,7 +8,7 @@ public class Main {
         ConsoleStyler.printBlue("1. Log1n    2. SignUp  3. exit game (Choose an appropriate number)");
         // read "About game, devs (us) 😅"2
 
-        int choice = InputProcessor.getInt(1,2);
+        int choice = InputProcessor.getInt(1,3);
 
         String userName;
         if (choice == 1) {
