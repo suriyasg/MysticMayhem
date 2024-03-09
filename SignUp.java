@@ -57,7 +57,9 @@ public class SignUp {
         ObjectOutputStream newUserOut = new ObjectOutputStream(newUserFile);
 
         System.out.println("Congrats, You are the " + savedProfiles.getNumberOfUsers() + " User!");
-
+        System.out.println("Select your home land : this will give you some bonus to your army");
+        ChangeHomeland.render(newUser);
+        
         newUserOut.writeObject(newUser);
         userProfileOut.writeObject(savedProfiles);
 
