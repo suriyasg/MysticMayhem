@@ -70,6 +70,14 @@ public class User implements Serializable {
     public void incrementXP() {
         this.XP++;
     }
+    
+    public void getuserinfo(){
+        System.out.println("Name : "+getName()+"\nXP   : "+getXP()+"\nGold Coins : "+getCoins());
+        System.out.println("Names of Warriors :");
+        for(Character ch:characters){
+            System.out.println(ch.getName());
+        }
+    }
 
     public void buyCharacter(Character character) {
         int remainingCoins = getCoins() - character.getPrice();
