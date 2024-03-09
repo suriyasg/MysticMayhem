@@ -74,6 +74,7 @@ public class MainMenu {
                 }
             case 6:
                 Handlefile.writeUserFile(currentUser);
+                System.out.println("Credits: \nVithurshan S. \nSuriya G. \nPratheep S. \nVinushaanth S.");
                 System.exit(0);
             default:
                 return;
