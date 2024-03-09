@@ -1,10 +1,6 @@
 import java.util.*;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InvalidClassException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 
 
 public class Warface {
@@ -64,16 +60,12 @@ public class Warface {
     static void declareWar(User attacker) throws ClassNotFoundException, IOException,InvalidClassException{
         User deffender = Randomuser.getrandomUser(attacker);
         if(deffender.getUserName().equals(attacker.getUserName())){
-            System.out.println("Sorry there are no opponent exist to play");
+            System.out.println("Sorry there are no valid opponent exist to play");
             MainMenu.render(attacker.getUserName());
             return;
         }
         String warland = deffender.getHomeLand();
         System.out.println("War Started ");
-        ArrayList<Character> cpyatt = new ArrayList<>();
-        for(Character c : attacker.characters){
-            cpyatt.add(c);
-        }
         ArrayList<Character> attackerWariors = Landbonus.setland(warland,attacker.characters);// Character shooter,templar,warlock,soother,dragon
         ArrayList<Character> deffenderWariors =Landbonus.setland(warland, deffender.characters);
         if(deffenderWariors.size()==0){
@@ -121,31 +113,14 @@ public class Warface {
             }
 
         }
-        
-        FileInputStream FileIn1 = new FileInputStream(attacker.getUserName()+".ser");
-        ObjectInputStream in = new ObjectInputStream(FileIn1);
-        User att = (User) in.readObject();
-        in.close();
-        FileIn1.close();
-        FileInputStream FileIn2 = new FileInputStream(deffender.getUserName()+".ser"); 
-        ObjectInputStream in1 = new ObjectInputStream(FileIn2);
-        User deff = (User) in1.readObject();
-        in1.close();
-        FileIn2.close();
+        User att = Handlefile.readUserFile(attacker.getUserName());
+        User deff = Handlefile.readUserFile(deffender.getUserName());
         attacker.characters = att.characters;
         deffender.characters = deff.characters;
         System.out.println(attacker.getName()+" XP : "+attacker.getXP()+" | gold coins : "+attacker.getCoins());
         System.out.println(deffender.getName()+" XP : "+deffender.getXP()+" | gold coins : "+deffender.getCoins()+"\n");
-        FileOutputStream userProfileFileatt = new FileOutputStream(attacker.getUserName()+".ser");
-        ObjectOutputStream userProfileOutatt = new ObjectOutputStream(userProfileFileatt);
-        userProfileOutatt.writeObject(attacker);
-        userProfileOutatt.close();
-        userProfileFileatt.close();
-        FileOutputStream userProfileFiledeff = new FileOutputStream(deffender.getUserName()+".ser");
-        ObjectOutputStream userProfileOutdeff = new ObjectOutputStream(userProfileFiledeff);
-        userProfileOutdeff.writeObject(deffender);
-        userProfileOutdeff.close();
-        userProfileFiledeff.close();
+        Handlefile.writeUserFile(attacker);
+        Handlefile.writeUserFile(deffender);
         MainMenu.render(attacker.getUserName());
 
         

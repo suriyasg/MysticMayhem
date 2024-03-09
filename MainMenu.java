@@ -1,11 +1,7 @@
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-//import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-//import java.io.ObjectOutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -21,12 +17,7 @@ public class MainMenu {
             return;
         }
 
-        FileInputStream FileIn = new FileInputStream(workingDir + "/" + userName + ".ser"); // need to get path
-                                                                                            // dynamically
-        ObjectInputStream in = new ObjectInputStream(FileIn);
-        User currentUser = (User) in.readObject();
-        in.close();
-        FileIn.close();
+        User currentUser = Handlefile.readUserFile(userName);
 
         System.out.println("-----------------------------");
         System.out.println("Welcome to Main Menu");
@@ -83,18 +74,16 @@ public class MainMenu {
                 // war
                 break;
             case 6:
-                FileOutputStream currentUserFile = new FileOutputStream(currentUser.getUserName() + ".ser");
-                ObjectOutputStream currentUserOut = new ObjectOutputStream(currentUserFile);
-                currentUserOut.writeObject(currentUser);
-                currentUserOut.close();
-                currentUserFile.close();
+               
+                Handlefile.writeUserFile(currentUser);
                 System.exit(0);
             case 7:
-                if(currentUser.characters.size()==5){
+                if(currentUser.validArmy()){
                     Warface.declareWar(currentUser);
                     
                 }else{
-                    System.out.println("you can't declare war because you must have 5 warriors but you have only "+currentUser.characters.size());
+
+                    System.out.println("you can't declare war because you must have 5 warriors"+currentUser.validArmy());
                     render(currentUser.getUserName());
                     
                 }

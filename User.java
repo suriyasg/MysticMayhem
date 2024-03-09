@@ -11,8 +11,16 @@ public class User implements Serializable {
     private int XP;
     // last Login ??
 
-    public ArrayList<Character> characters = new ArrayList<>(Collections.nCopies(5, null));;
-    public boolean hasValidArmy = (characters.size() == 5);
+    public ArrayList<Character> characters = new ArrayList<>(Collections.nCopies(5, null));
+    public boolean hasValidArmy = true;
+    public boolean validArmy(){
+        for(Character cc : characters){
+            if(cc==null){
+                hasValidArmy = false;
+            }
+        }
+        return hasValidArmy;
+    }
 
     public User(String userName, int id) {
         this.userName = userName;

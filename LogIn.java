@@ -1,15 +1,12 @@
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 
 public class LogIn {
-    private static UserProfiles savedProfiles = null;
     private static String Loggeduser;
 
     public static String render() throws IOException, ClassNotFoundException {
@@ -30,11 +27,7 @@ public class LogIn {
             userProfileFile.close();
         }
 
-        FileInputStream FileIn = new FileInputStream(workingDir + "/UserProfile.ser"); // need to get path dynamically
-        ObjectInputStream in = new ObjectInputStream(FileIn);
-        savedProfiles = (UserProfiles) in.readObject();
-        in.close();
-        FileIn.close();
+        UserProfiles savedProfiles = Handlefile.readUserProfiles("UserProfile");
 
         System.out.println("Welcome To Log In Page!");
         System.out.print("Enter your user name :");
