@@ -39,10 +39,11 @@ public class MainMenu {
         System.out.println("3 > view your Army");
         System.out.println("4 > Edit your Army");
         System.out.println("5 > Search for opponents");
+        System.out.println("7 > Declare war");
         System.out.println("6 > to Exit");
         System.out.println("-----------------------------");
         System.out.print("> ");
-        int choice = InputProcessor.getInt(1, 6);
+        int choice = InputProcessor.getInt(1, 7);
 
         switch (choice) {
             case 1:
@@ -88,6 +89,16 @@ public class MainMenu {
                 currentUserOut.close();
                 currentUserFile.close();
                 System.exit(0);
+            case 7:
+                if(currentUser.characters.size()==5){
+                    Warface.declareWar(currentUser);
+                    
+                }else{
+                    System.out.println("you can't declare war because you must have 5 warriors but you have only "+currentUser.characters.size());
+                    render(currentUser.getUserName());
+                    
+                }
+                
             default:
                 return;
         }
