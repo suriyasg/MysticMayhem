@@ -32,6 +32,6 @@ public class ChangeHomeland {
         currentUserOut.writeObject(CurrentUser);
         currentUserOut.close();
         currentUserFile.close();
-        MainMenu.render(CurrentUser.getUserName());
+        return;
     }
 }
