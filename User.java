@@ -9,13 +9,13 @@ public class User implements Serializable {
     private String homeLand;
     private int coins;
     private int XP;
-    // last Login ??
 
     public ArrayList<Character> characters = new ArrayList<>(Collections.nCopies(5, null));
     public boolean hasValidArmy = true;
-    public boolean validArmy(){
-        for(Character cc : characters){
-            if(cc==null){
+
+    public boolean validArmy() {
+        for (Character cc : characters) {
+            if (cc == null) {
                 hasValidArmy = false;
             }
         }
@@ -41,19 +41,9 @@ public class User implements Serializable {
         return userName;
     }
 
-    // public void setUserName(String userName) {
-    // this.userName = userName;
-    // }
-
     public int getUserID() {
         return userID;
     }
-
-    /*
-     * public void setUserID(int userID) {
-     * this.userID = userID;
-     * }
-     */ // setUserId is not required since userID cannot be changed after instantiation
 
     public String getHomeLand() {
         return homeLand;
@@ -78,11 +68,11 @@ public class User implements Serializable {
     public void incrementXP() {
         this.XP++;
     }
-    
-    public void getuserinfo(){
-        System.out.println("Name : "+getName()+"\nXP   : "+getXP()+"\nGold Coins : "+getCoins());
+
+    public void getuserinfo() {
+        System.out.println("Name : " + getName() + "\nXP   : " + getXP() + "\nGold Coins : " + getCoins());
         System.out.println("Names of Warriors :");
-        for(Character ch:characters){
+        for (Character ch : characters) {
             System.out.println(ch.getName());
         }
     }

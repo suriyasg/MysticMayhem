@@ -1,7 +1,5 @@
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -29,9 +27,9 @@ public class MainMenu {
         System.out.println("2 > Change Homeland");
         System.out.println("3 > view your Army");
         System.out.println("4 > Edit your Army");
-        System.out.println("5 > Search for opponents");
-        System.out.println("7 > Declare war");
-        System.out.println("6 > to Exit");
+        System.out.println("5 > Go to war !!!!");
+        System.out.println("6 > Exit");
+
         System.out.println("-----------------------------");
         System.out.print("> ");
         int choice = InputProcessor.getInt(1, 7);
@@ -48,46 +46,35 @@ public class MainMenu {
                 MainMenu.printArmy(currentUser);
                 break;
             case 4:
-                System.out.println("1. Buy Characters");
-                System.out.println("2. Sell Characters");
-                System.out.println("3. Exchange Characters");
-                System.out.println("4. Buy Or Discard Equipments");
+                System.out.println("1. Change Characters in your army");
+                System.out.println("2. Buy Or Discard Equipments");
                 choice = InputProcessor.getInt(1, 4);
                 switch (choice) {
                     case 1:
-                        BuyCharacter.render(currentUser);
-                        break;
-                    case 2:
-                        SellCharacter.render(currentUser);
-                        break;
-                    case 4:
-                        Attic.render(currentUser);
-                        break;
-                    case 3:
                         ExchangeCharacters.render(currentUser);
                         break;
+                    case 2:
+                        Attic.render(currentUser);
+                        break;
+
                     default:
                         return;
                 }
                 break;
             case 5:
-                // war
-                break;
+                if (currentUser.validArmy()) {
+                    Warface.declareWar(currentUser);
+
+                } else {
+
+                    System.out.println(
+                            "you can't declare war because you must have 5 warriors" + currentUser.validArmy());
+                    render(currentUser.getUserName());
+
+                }
             case 6:
-               
                 Handlefile.writeUserFile(currentUser);
                 System.exit(0);
-            case 7:
-                if(currentUser.validArmy()){
-                    Warface.declareWar(currentUser);
-                    
-                }else{
-
-                    System.out.println("you can't declare war because you must have 5 warriors"+currentUser.validArmy());
-                    render(currentUser.getUserName());
-                    
-                }
-                
             default:
                 return;
         }
@@ -105,7 +92,6 @@ public class MainMenu {
                 soldier.printInfo();
             }
 
-            // System.out.println("Character will apperar Here!");
             System.out.println("-------------");
         }
         return;
