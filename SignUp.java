@@ -3,10 +3,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 
-public class SignUp {
-    // private static UserProfiles profiles = new UserProfiles();
+public class SignUp{
 
-    private static UserProfiles savedProfiles = null;
 
     public static String render() throws IOException, ClassNotFoundException {
         Path currentRelativePath = Paths.get("");
@@ -26,14 +24,9 @@ public class SignUp {
             userProfileFile.close();
         }
 
-        FileInputStream FileIn = new FileInputStream(workingDir + "/UserProfile.ser"); // need to get path dynamically
-        ObjectInputStream in = new ObjectInputStream(FileIn);
-        savedProfiles = (UserProfiles) in.readObject();
-        in.close();
-        FileIn.close();
 
-        FileOutputStream userProfileFile = new FileOutputStream("UserProfile.ser");
-        ObjectOutputStream userProfileOut = new ObjectOutputStream(userProfileFile);
+        UserProfiles savedProfiles = Handlefile.readUserProfiles("UserProfile");
+
 
         System.out.println("Welcome To Sign Up Page!");
 
@@ -53,21 +46,12 @@ public class SignUp {
         // newUser.setUserName(userName); user name read-only once defined
         savedProfiles.addUserName(userName);
 
-        FileOutputStream newUserFile = new FileOutputStream(userName + ".ser");
-        ObjectOutputStream newUserOut = new ObjectOutputStream(newUserFile);
 
         System.out.println("Congrats, You are the " + savedProfiles.getNumberOfUsers() + " User!");
-        System.out.println("Select your home land : this will give you some bonus to your army");
-        ChangeHomeland.render(newUser);
-        
-        newUserOut.writeObject(newUser);
-        userProfileOut.writeObject(savedProfiles);
 
-        newUserOut.close();
-        newUserFile.close();
+        Handlefile.writeUserFile(newUser);
+        Handlefile.writeUserProfiles(savedProfiles);
 
-        userProfileOut.close();
-        userProfileFile.close();
         System.out.println("User saved!");
         return userName;
 
