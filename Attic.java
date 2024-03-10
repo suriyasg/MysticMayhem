@@ -1,6 +1,4 @@
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 
 public class Attic {
     public static void render(User currentUser) throws IOException{
@@ -83,18 +81,14 @@ public class Attic {
                 break;
             }
 
-
-        FileOutputStream UserFile = new FileOutputStream(currentUser.getUserName() + ".ser");
-        ObjectOutputStream UserOut = new ObjectOutputStream(UserFile);
         
         if(luckyCharater.hasArmour())
             System.out.println("now your " + luckyCharater.getName() +" has  "+luckyCharater.getArmour().getName()); 
         if(luckyCharater.hasArtefact())
             System.out.println("now your " + luckyCharater.getName() +" has  "+luckyCharater.getArtefact().getName()); 
 
-        UserOut.writeObject(currentUser);
-        UserOut.close();
-        UserFile.close();
+        
+        Handlefile.writeUserFile(currentUser);
         return;
     }
 }

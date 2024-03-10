@@ -1,6 +1,4 @@
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 
 public class ExchangeCharacters {
     public static void render(User currentUser) throws IOException, ClassNotFoundException {
@@ -195,10 +193,6 @@ public class ExchangeCharacters {
                 MainMenu.render(currentUser.getUserName());
         }
 
-        FileOutputStream currentUserFile = new FileOutputStream(currentUser.getUserName() + ".ser");
-        ObjectOutputStream currentUserOut = new ObjectOutputStream(currentUserFile);
-        currentUserOut.writeObject(currentUser);
-        currentUserOut.close();
-        currentUserFile.close();
+        Handlefile.writeUserFile(currentUser);
     }
 }

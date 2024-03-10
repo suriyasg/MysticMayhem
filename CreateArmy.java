@@ -1,6 +1,4 @@
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 
 public class CreateArmy {
     public static void render(User currentUser) throws ClassNotFoundException, IOException {
@@ -40,10 +38,6 @@ public class CreateArmy {
         System.out.println("");
         System.out.println("You can edit your army as you Earn Coins in matches. :-)");
 
-        FileOutputStream currentUserFile = new FileOutputStream(currentUser.getUserName() + ".ser");
-        ObjectOutputStream currentUserOut = new ObjectOutputStream(currentUserFile);
-        currentUserOut.writeObject(currentUser);
-        currentUserOut.close();
-        currentUserFile.close();
+        Handlefile.writeUserFile(currentUser);
     }
 }

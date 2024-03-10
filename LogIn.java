@@ -27,7 +27,7 @@ public class LogIn {
             userProfileFile.close();
         }
 
-        UserProfiles savedProfiles = Handlefile.readUserProfiles("UserProfile");
+        UserProfiles savedProfiles = Handlefile.readUserProfiles();
 
         System.out.println("Welcome To Log In Page!");
         System.out.print("Enter your user name :");
