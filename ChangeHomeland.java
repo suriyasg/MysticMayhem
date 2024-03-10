@@ -3,8 +3,12 @@ import java.io.IOException;
 public class ChangeHomeland {
     public static void render(User CurrentUser) throws ClassNotFoundException, IOException {
         System.out.println("Welcome!" + CurrentUser.getName());
-        System.out.println("Your Current HomeLand is " + CurrentUser.getHomeLand()
+        if(CurrentUser.getHomeLand() == null){
+            System.out.println("You haven't chosen a homeland yet!");
+        }else{
+            System.out.println("Your Current HomeLand is " + CurrentUser.getHomeLand()
                 + "\nPlease remeber that changing your Homeground may affect your performance");
+        }
         System.out.print(
                 "Please Select your new Homeland\n1.Hillcrest\n2.Marshand\n3.Desert\n4.Arcane\nPlease Enter your input: ");
         int choice = InputProcessor.getInt(1, 4);
