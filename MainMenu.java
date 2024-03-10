@@ -21,6 +21,7 @@ public class MainMenu {
         System.out.println("Welcome to Main Menu");
         System.out.println(currentUser.getName() + " HomeLand : 🏞️ " + currentUser.getHomeLand());
         System.out.println("Coins : " + currentUser.getCoins());
+        System.out.println("XP : " + currentUser.getXP());
         System.out.println("-----------------------------");
 
         System.out.println("1 > Create Your Army (only do this if you are new user!)");
@@ -68,7 +69,7 @@ public class MainMenu {
                 } else {
 
                     System.out.println(
-                            "you can't declare war because you must have 5 warriors" + currentUser.validArmy());
+                            "you can't declare war because you must have 5 warriors");
                     render(currentUser.getUserName());
 
                 }
