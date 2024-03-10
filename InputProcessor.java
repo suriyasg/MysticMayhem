@@ -23,7 +23,7 @@ public class InputProcessor {
 
     public static String getString() {
         String nextString = scanner.nextLine();
-        if (nextString.equals("") && nextString.trim().isEmpty()) {
+        if (nextString.equals("") || nextString.trim().isEmpty()) {
             System.out.print("Please Enter a valid name:");
             return getString();
         }
