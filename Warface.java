@@ -87,7 +87,7 @@ public class Warface {
 
                 if (deffenderWariors.size() == 0) {
                     System.out.println("\n\n" + attacker.getName() + " has won ");
-                    attacker.won((int) (0.2 * deffender.getCoins()));
+                    attacker.won(deffender.getCoins());
                     deffender.setCoins(deffender.getCoins() - (int) (0.2 * deffender.getCoins()));
 
                     break;
@@ -99,7 +99,7 @@ public class Warface {
                 takeoffence(deffender.getName(), j, b, deffenderWariors, attackerWariors);
                 if (attackerWariors.size() == 0) {
                     System.out.println("\n\n" + deffender.getName() + " has won ");
-                    deffender.won((int) (0.2 * attacker.getCoins()));
+                    deffender.won(attacker.getCoins());
                     attacker.setCoins(attacker.getCoins() - (int) (0.2 * attacker.getCoins()));
                     break;
                 }
