@@ -23,7 +23,7 @@ public class Randomuser implements Serializable{
 
     }
     public static User getrandomUser(User user) throws ClassNotFoundException, IOException,InvalidClassException{
-        ArrayList<String> userlist = Handlefile.readUserProfiles("UserProfile").getUserNames();
+        ArrayList<String> userlist = Handlefile.readUserProfiles().getUserNames();
         userlist.remove(user.getUserName());
         if(userlist.size()==0){
             return user;

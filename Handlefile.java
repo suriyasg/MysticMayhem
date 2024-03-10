@@ -24,8 +24,8 @@ public class Handlefile {
     }
 
 
-    public static UserProfiles readUserProfiles(String filename) throws ClassNotFoundException, IOException{
-        FileInputStream FileIn = new FileInputStream(workingDir + "/"+filename+".ser");
+    public static UserProfiles readUserProfiles() throws ClassNotFoundException, IOException{
+        FileInputStream FileIn = new FileInputStream(workingDir + "/UserProfile.ser");
         ObjectInputStream in = new ObjectInputStream(FileIn);
         savedProfiles = (UserProfiles) in.readObject();
         in.close();

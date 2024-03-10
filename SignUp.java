@@ -18,21 +18,11 @@ public class SignUp {
             // dummyUsers.addUserName("Suriya2");
             // dummyUsers.addUserName("Suriya3");
 
-            FileOutputStream userProfileFile = new FileOutputStream("UserProfile.ser");
-            ObjectOutputStream userProfileOut = new ObjectOutputStream(userProfileFile);
-            userProfileOut.writeObject(dummyUsers);
-            userProfileOut.close();
-            userProfileFile.close();
+            Handlefile.writeUserProfiles(dummyUsers);
         }
 
-        FileInputStream FileIn = new FileInputStream(workingDir + "/UserProfile.ser"); // need to get path dynamically
-        ObjectInputStream in = new ObjectInputStream(FileIn);
-        savedProfiles = (UserProfiles) in.readObject();
-        in.close();
-        FileIn.close();
+        savedProfiles = Handlefile.readUserProfiles();
 
-        FileOutputStream userProfileFile = new FileOutputStream("UserProfile.ser");
-        ObjectOutputStream userProfileOut = new ObjectOutputStream(userProfileFile);
 
         System.out.println("Welcome To Sign Up Page!");
 
@@ -52,21 +42,15 @@ public class SignUp {
         // newUser.setUserName(userName); user name read-only once defined
         savedProfiles.addUserName(userName);
 
-        FileOutputStream newUserFile = new FileOutputStream(userName + ".ser");
-        ObjectOutputStream newUserOut = new ObjectOutputStream(newUserFile);
 
         System.out.println("Congrats, You are the " + savedProfiles.getNumberOfUsers() + " User!");
         System.out.println("Select your home land : this will give you some bonus to your army");
         ChangeHomeland.render(newUser);
 
-        newUserOut.writeObject(newUser);
-        userProfileOut.writeObject(savedProfiles);
+        Handlefile.writeUserFile(newUser);
+        Handlefile.writeUserProfiles(savedProfiles);
 
-        newUserOut.close();
-        newUserFile.close();
 
-        userProfileOut.close();
-        userProfileFile.close();
         System.out.println("User saved!");
         return userName;
 
