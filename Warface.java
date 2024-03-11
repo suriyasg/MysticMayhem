@@ -1,4 +1,9 @@
 import java.util.*;
+
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 import java.io.IOException;
 import java.io.InvalidClassException;
 
@@ -15,14 +20,14 @@ public class Warface {
         if (offencer.getClass().getSimpleName().equals("Healer")) {
             offencer.attackOpponent(attack.get(attack.indexOf(ado.get(0))));
             if (deffencer.getHealth() <= 0) {
-                System.out.println(ddo.get(0).getName() + " is dead!");
+                System.out.println(ddo.get(0).getName() + " died!");
                 deffend.remove(ddo.get(0));
 
             }
         } else if (Landbonus.check(Landbonus.Highlanders, offencer.getName())) {
             offencer.attackOpponent(deffencer);
             if (deffencer.getHealth() <= 0) {
-                System.out.println(ddo.get(0).getName() + " is dead!");
+                ConsoleStyler.printRedBold(ddo.get(0).getName() + " died!");
                 deffend.remove(ddo.get(0));
                 ddo.remove(ddo.get(0));
 
@@ -33,7 +38,7 @@ public class Warface {
             Character bonuswarior = new Character("bonusattacker", 0, 0.2 * offencer.getAttack(), 0, 0, 0);
             bonuswarior.attackOpponent(deffend.get(deffend.indexOf(ddo.get(0))));
             if (deffencer.getHealth() <= 0) {
-                System.out.println(ddo.get(0).getName() + " is dead!");
+                ConsoleStyler.printRedBold(ddo.get(0).getName() + " died!");
                 deffend.remove(ddo.get(0));
 
             }
@@ -41,38 +46,44 @@ public class Warface {
             offencer.setHealth(offencer.getHealth() + 0.1 * offencer.getHealth());
             offencer.attackOpponent(deffencer);
             if (deffencer.getHealth() <= 0) {
-                System.out.println(ddo.get(0).getName() + " is dead!");
+                ConsoleStyler.printRedBold(ddo.get(0).getName() + " died!");
                 deffend.remove(ddo.get(0));
 
             }
         } else {
             offencer.attackOpponent(deffencer);
             if (deffencer.getHealth() <= 0) {
-                System.out.println(ddo.get(0).getName() + " is dead!");
+                ConsoleStyler.printRedBold(ddo.get(0).getName() + " died!");
                 deffend.remove(ddo.get(0));
             }
         }
         return;
     }
 
-    static void declareWar(User attacker) throws ClassNotFoundException, IOException, InvalidClassException {
+    static void declareWar(User attacker) throws ClassNotFoundException, IOException, InvalidClassException,
+            UnsupportedAudioFileException, LineUnavailableException {
         User deffender = Randomuser.getrandomUser(attacker);
         if (deffender.getUserName().equals(attacker.getUserName())) {
-            System.out.println("Sorry there are no valid opponents exist to play");
+            ConsoleStyler.printRedBold("Sorry there are no valid opponents exist to play");
             MainMenu.render(attacker.getUserName());
             return;
         }
         String warland = deffender.getHomeLand();
-        System.out.println("War has Started ");
+        ConsoleStyler.printYellowBold("War has Started ");
         ArrayList<Character> attackerWariors = Landbonus.setland(warland, attacker.characters);// Character
                                                                                                // shooter,templar,warlock,soother,dragon
         ArrayList<Character> deffenderWariors = Landbonus.setland(warland, deffender.characters);
         if (deffenderWariors.size() == 0) {
-            System.out.println("\n\n" + attacker.getName() + " has won ");
+            ConsoleStyler.printGreenBold("\n\n" + attacker.getName() + " has won ");
             attacker.won((int) (0.2 * deffender.getCoins()));
             deffender.setCoins(deffender.getCoins() - (int) (0.2 * deffender.getCoins()));
         } else {
             int a = 0, b = 0;
+            // Clip music = MusicPlayer.playMusic();
+            // if (!music.equals(null)) {
+            // music.start();
+            // }
+
             for (int j = 0; j < 10; j++) {
                 a++;
                 b++;
@@ -86,7 +97,7 @@ public class Warface {
                 takeoffence(attacker.getName(), j, a, attackerWariors, deffenderWariors);
 
                 if (deffenderWariors.size() == 0) {
-                    System.out.println("\n\n" + attacker.getName() + " has won ");
+                    ConsoleStyler.printGreenBold("\n\n" + attacker.getName() + " has won ");
                     attacker.won(deffender.getCoins());
                     deffender.setCoins(deffender.getCoins() - (int) (0.2 * deffender.getCoins()));
 
@@ -98,7 +109,7 @@ public class Warface {
                 System.out.println("\n");
                 takeoffence(deffender.getName(), j, b, deffenderWariors, attackerWariors);
                 if (attackerWariors.size() == 0) {
-                    System.out.println("\n\n" + deffender.getName() + " has won ");
+                    ConsoleStyler.printGreenBold("\n\n" + deffender.getName() + " has won ");
                     deffender.won(attacker.getCoins());
                     attacker.setCoins(attacker.getCoins() - (int) (0.2 * attacker.getCoins()));
                     break;
@@ -107,9 +118,19 @@ public class Warface {
                     a = 0;
                 }
                 if (j == 9) {
-                    System.out.println("\n\nDraw");
+                    ConsoleStyler.printYellowBold("\n\nDraw");
                 }
+                /*
+                 * try {
+                 * Thread.sleep(3000);
+                 * } catch (InterruptedException e) {
+                 * e.printStackTrace();
+                 * }
+                 */
             }
+            // if (!music.equals(null)) {
+            // music.stop();
+            // }
         }
         User att = Handlefile.readUserFile(attacker.getUserName());
         User deff = Handlefile.readUserFile(deffender.getUserName());

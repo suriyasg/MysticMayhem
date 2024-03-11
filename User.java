@@ -80,7 +80,7 @@ public class User implements Serializable {
     public void buyCharacter(Character character) {
         int remainingCoins = getCoins() - character.getPrice();
         if (remainingCoins < 0) {
-            System.out.println("You don't have enough money to buy this character");
+            ConsoleStyler.printRedBold("You don't have enough money to buy this character");
         } else {
             setCoins(remainingCoins);
             if (this.characters.get(character.getPos()) == null) {
@@ -88,7 +88,8 @@ public class User implements Serializable {
                 characters.add(character.getPos(), character);
                 System.out.println("Your current balance : " + getCoins() + " Gold coins.");
             } else {
-                System.out.println("You Already Have a warrior in this category!! Please Sell it or Exchange it");
+                ConsoleStyler
+                        .printRedBold("You Already Have a warrior in this category!! Please Sell it or Exchange it");
             }
         }
 

@@ -1,7 +1,11 @@
 import java.io.IOException;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 public class ExchangeCharacters {
-    public static void render(User currentUser) throws IOException, ClassNotFoundException {
+    public static void render(User currentUser)
+            throws IOException, ClassNotFoundException, UnsupportedAudioFileException, LineUnavailableException {
         System.out.println("You Have the following Characters in your army");
         MainMenu.printArmy(currentUser);
 

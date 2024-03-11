@@ -3,15 +3,19 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 public class MainMenu {
-    public static void render(String userName) throws IOException, ClassNotFoundException {
+    public static void render(String userName)
+            throws IOException, ClassNotFoundException, UnsupportedAudioFileException, LineUnavailableException {
 
         Path currentRelativePath = Paths.get("");
         String workingDir = currentRelativePath.toAbsolutePath().toString();
 
         boolean doesExists = new File(workingDir + "/" + userName + ".ser").isFile();
         if (!doesExists) {
-            System.out.println("User Files are missing!"); // update message to somewhat formal
+            ConsoleStyler.printRedBold("User Files are missing!"); // update message to somewhat formal
             return;
         }
 
@@ -68,7 +72,7 @@ public class MainMenu {
 
                 } else {
 
-                    System.out.println(
+                    ConsoleStyler.printRedBold(
                             "you can't declare war because you must have 5 warriors");
                     render(currentUser.getUserName());
 

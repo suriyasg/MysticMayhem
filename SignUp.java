@@ -23,7 +23,6 @@ public class SignUp {
 
         savedProfiles = Handlefile.readUserProfiles();
 
-
         System.out.println("Welcome To Sign Up Page!");
 
         System.out.print("Enter your name :");
@@ -33,7 +32,7 @@ public class SignUp {
         System.out.print("Enter your user name (you can not reset it later) :");
         String userName = InputProcessor.getString();
         while (savedProfiles.isAlreadyTaken(userName)) {
-            System.out.println("User name is already taken! try a different one");
+            ConsoleStyler.printRedBold("User name is already taken! try a different one");
             System.out.print("Enter your user name (you can not reset it later) :");
             userName = InputProcessor.getString();
         }
@@ -42,7 +41,6 @@ public class SignUp {
         // newUser.setUserName(userName); user name read-only once defined
         savedProfiles.addUserName(userName);
 
-
         System.out.println("Congrats, You are the " + savedProfiles.getNumberOfUsers() + " User!");
         System.out.println("Select your home land : this will give you some bonus to your army");
         ChangeHomeland.render(newUser);
@@ -50,8 +48,7 @@ public class SignUp {
         Handlefile.writeUserFile(newUser);
         Handlefile.writeUserProfiles(savedProfiles);
 
-
-        System.out.println("User saved!");
+        ConsoleStyler.printGreenBold("User saved!");
         return userName;
 
     }

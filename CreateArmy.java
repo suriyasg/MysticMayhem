@@ -1,10 +1,14 @@
 import java.io.IOException;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 public class CreateArmy {
-    public static void render(User currentUser) throws ClassNotFoundException, IOException {
+    public static void render(User currentUser)
+            throws ClassNotFoundException, IOException, UnsupportedAudioFileException, LineUnavailableException {
         if (currentUser.characters.size() > 0
                 && !(currentUser.characters.stream().allMatch(element -> element == null))) {
-            System.err.println(
+            ConsoleStyler.printRedBold(
                     "You have already Created your army!! Please select Edit option in MainMenu to edit your Army!!");
             MainMenu.render(currentUser.getUserName());
             return;
@@ -15,19 +19,19 @@ public class CreateArmy {
 
         System.out.println("A Default Army is given for You");
         System.out.println("Your Army Will be Assigned Shortly....");
-        System.out.println("You are Given Shooter(80 GC)");
+        ConsoleStyler.printGreenBold("You are Given Shooter(80 GC)");
         Archer dShooter = new Archer("Shooter", 80, 11, 4, 6, 9);
         currentUser.buyCharacter(dShooter);
-        System.out.println("You are Given Squire(85 GC)");
+        ConsoleStyler.printGreenBold("You are Given Squire(85 GC)");
         Knight dSquire = new Knight("Squire", 85, 8, 9, 7, 8);
         currentUser.buyCharacter(dSquire);
-        System.out.println("You are Given Warlock(100 GC)");
+        ConsoleStyler.printGreenBold("You are Given Warlock(100 GC)");
         Mage dWarlock = new Mage("Warlock", 100, 12, 7, 10, 12);
         currentUser.buyCharacter(dWarlock);
-        System.out.println("You are Given Soother(95 GC)");
+        ConsoleStyler.printGreenBold("You are Given Soother(95 GC)");
         Healer dSoother = new Healer("Soother", 95, 10, 8, 9, 6);
         currentUser.buyCharacter(dSoother);
-        System.out.println("You are Given Dragon(120 GC)");
+        ConsoleStyler.printGreenBold("You are Given Dragon(120 GC)");
         MythicalCreature dDragon = new MythicalCreature("Dragon", 120, 12, 14, 15, 8);
         currentUser.buyCharacter(dDragon);
 
