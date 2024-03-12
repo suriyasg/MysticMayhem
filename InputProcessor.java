@@ -11,11 +11,11 @@ public class InputProcessor {
             if (choice >= low && choice <= high) {
                 return choice;
             } else {
-                System.out.print("Please Enter a Number within range: ");
+                ConsoleStyler.printRedBold("Please Enter a Number within range: ");
                 return getInt(low, high);
             }
         } catch (NumberFormatException e) {
-            System.out.print("Please Enter a Number: ");
+            ConsoleStyler.printRedBold("Please Enter a Number: ");
             return getInt(low, high);
         }
 
@@ -24,7 +24,7 @@ public class InputProcessor {
     public static String getString() {
         String nextString = scanner.nextLine();
         if (nextString.equals("") || nextString.trim().isEmpty()) {
-            System.out.print("Please Enter a valid name:");
+            System.out.print("Please Enter a valid input:");
             return getString();
         }
         return nextString;
