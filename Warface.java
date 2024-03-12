@@ -79,10 +79,10 @@ public class Warface {
             deffender.setCoins(deffender.getCoins() - (int) (0.2 * deffender.getCoins()));
         } else {
             int a = 0, b = 0;
-            // Clip music = MusicPlayer.playMusic();
-            // if (!music.equals(null)) {
-            // music.start();
-            // }
+            Clip music = MusicPlayer.playMusic();
+            if (music != null) {
+                music.start();
+            }
 
             for (int j = 0; j < 10; j++) {
                 a++;
@@ -120,17 +120,17 @@ public class Warface {
                 if (j == 9) {
                     ConsoleStyler.printYellowBold("\n\nDraw");
                 }
-                /*
-                 * try {
-                 * Thread.sleep(3000);
-                 * } catch (InterruptedException e) {
-                 * e.printStackTrace();
-                 * }
-                 */
+
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
             }
-            // if (!music.equals(null)) {
-            // music.stop();
-            // }
+            if (music != null) {
+                music.stop();
+            }
         }
         User att = Handlefile.readUserFile(attacker.getUserName());
         User deff = Handlefile.readUserFile(deffender.getUserName());
