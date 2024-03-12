@@ -1,11 +1,8 @@
 import java.io.IOException;
 
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-
 public class CreateArmy {
     public static void render(User currentUser)
-            throws ClassNotFoundException, IOException, UnsupportedAudioFileException, LineUnavailableException {
+            throws ClassNotFoundException, IOException {
         if (currentUser.characters.size() > 0
                 && !(currentUser.characters.stream().allMatch(element -> element == null))) {
             ConsoleStyler.printRedBold(

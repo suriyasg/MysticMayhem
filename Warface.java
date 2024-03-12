@@ -1,9 +1,5 @@
 import java.util.*;
 
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-
 import java.io.IOException;
 import java.io.InvalidClassException;
 
@@ -60,8 +56,7 @@ public class Warface {
         return;
     }
 
-    static void declareWar(User attacker) throws ClassNotFoundException, IOException, InvalidClassException,
-            UnsupportedAudioFileException, LineUnavailableException {
+    static void declareWar(User attacker) throws ClassNotFoundException, IOException, InvalidClassException {
         User deffender = Randomuser.getrandomUser(attacker);
         if (deffender.getUserName().equals(attacker.getUserName())) {
             ConsoleStyler.printRedBold("Sorry there are no valid opponents exist to play");

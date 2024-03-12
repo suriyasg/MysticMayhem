@@ -3,12 +3,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-
 public class MainMenu {
     public static void render(String userName)
-            throws IOException, ClassNotFoundException, UnsupportedAudioFileException, LineUnavailableException {
+            throws IOException, ClassNotFoundException {
 
         Path currentRelativePath = Paths.get("");
         String workingDir = currentRelativePath.toAbsolutePath().toString();
