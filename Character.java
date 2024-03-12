@@ -30,13 +30,13 @@ public class Character implements Serializable {
     }
 
     public void attackOpponent(Character op) { // attacking procedure is same for most of the characters
-        System.out.println(this.name+" is attack "+op.getName());
-        op.setHealth(op.getHealth() - (0.5 * this.getAttack() - 0.1*op.getDefence()));
-        if(op.getHealth()<=0){
+        System.out.println(this.name + " attacks " + op.getName());
+        op.setHealth(op.getHealth() - (0.5 * this.getAttack() - 0.1 * op.getDefence()));
+        if (op.getHealth() <= 0) {
             op.setHealth(0);
         }
-        System.out.println(op.getName()+"'s health: "+op.getHealth());
-        System.out.println(this.getName()+"'s health: "+this.getHealth());
+        System.out.println(op.getName() + "'s health: " + op.getHealth());
+        System.out.println(this.getName() + "'s health: " + this.getHealth());
     }
 
     public String getName() {
@@ -48,7 +48,7 @@ public class Character implements Serializable {
     }
 
     public double getAttack() {
-        return (double)Math.round(attack*10)/10;
+        return (double) Math.round(attack * 10) / 10;
     }
 
     public int getPrice() {
@@ -72,7 +72,7 @@ public class Character implements Serializable {
     }
 
     public void setHealth(double health) {
-        this.health = (double)Math.round(health*10)/10;
+        this.health = (double) Math.round(health * 10) / 10;
     }
 
     public double getSpeed() {
@@ -222,10 +222,10 @@ class Healer extends Character {
 
     @Override
     public void attackOpponent(Character ally) {
-        System.out.println(this.getName()+" is attack "+ally.getName());
-        ally.setHealth(ally.getHealth()+0.1 * this.getAttack());
-        System.out.println(ally.getName()+"'s health: "+ally.getHealth());
-        System.out.println(this.getName()+"'s health: "+this.getHealth());
+        System.out.println(this.getName() + " heals " + ally.getName());
+        ally.setHealth(ally.getHealth() + 0.1 * this.getAttack());
+        System.out.println(ally.getName() + "'s health: " + ally.getHealth());
+        System.out.println(this.getName() + "'s health: " + this.getHealth());
     }
 
 }
